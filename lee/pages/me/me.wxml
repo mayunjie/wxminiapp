@@ -1,0 +1,42 @@
+<!--pages/me/me.wxml-->
+<view class="page">
+  <view class="page__hd me-head">
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+      </view>
+      <view class="weui-flex__item userinfo-detail">
+        <view>昵称：大象大象\n</view>
+        <view>当前积分：22</view>
+      </view>
+    </view>
+  </view>
+  <view class="page__bd">
+    <view class="weui-cells">
+      <view class="weui-cell weui-cell_access" bindtap="toSettingPage">
+        <view class="weui-cell__bd">设置</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </view>
+    </view>
+    <view class="weui-cells">
+      <view class="weui-cell weui-cell_access" bindtap="toLikePage">
+        <view class="weui-cell__bd">收藏</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </view>
+      <view class="weui-cell weui-cell_access" bindtap="toWrongPage">
+        <view class="weui-cell__bd">
+          <view style="display:inline-block; vertical-align: middle">错题集</view>
+          <view class="weui-badge" style="margin-left: 5px;">2</view>
+        </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </view>
+    </view>
+    <view class="weui-cells">
+      <view class="weui-cell weui-cell_access">
+        <view class="weui-cell__bd">学习曲线</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </view>
+    </view>
+  </view>
+  <view class="page__ft"></view>
+</view>

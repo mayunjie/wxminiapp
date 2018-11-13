@@ -1,0 +1,22 @@
+<!--pages/setting/setting.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-cells" bindtap="openGender">
+      <view class="weui-cell">
+                <view class="weui-cell__bd">性别</view>
+                <view class="weui-cell__ft">{{gender.name}}</view>
+            </view>
+        </view>
+        <view class="weui-cells" bindtap="openGrade">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">年级</view>
+                <view class="weui-cell__ft">{{grade.name}}</view>
+            </view>
+        </view>
+      <view class="button">
+        <button class="weui-btn mini-btn" type="primary" size="default">
+          <text>确定</text>
+        </button>
+      </view>
+  </view>
+</view>

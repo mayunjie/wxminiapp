@@ -1,0 +1,16 @@
+/* pages/like/like.wxss */
+.searchbar-result{
+    margin-top: 0;
+    font-size: 14px;
+}
+.searchbar-result:before{
+    display: none;
+}
+.weui-cell{
+    padding: 12px 15px 12px 35px;
+}
+
+.like-panel{
+  margin: 10px 5px 0px 5px;
+  border-radius:10px;
+}

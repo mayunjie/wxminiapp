@@ -1,0 +1,40 @@
+<!--pages/subject/subject.wxml-->
+<view class="page">
+  <view class="page__hd subject_head">
+    <view class="page__title">每日一测</view>
+    <view class="page__desc">please do the exercise</view>
+  </view>
+  <view class="page__bd page__bd_spacing">
+    <block wx:for="{{questionArray}}" wx:key="{{index}}">
+      <view wx:if="{{currentShow == index}}">
+        <view class="question">{{item.question}}</view>
+        <view class="weui-cells">
+          <radio-group bindchange="radioChange" data-index="{{index}}">
+            <block wx:for="{{item.answer}}" wx:for-item="answer">
+              <label class="weui-cell weui-check__label">
+                <radio class="weui-check" value="{{answer.value}}"></radio>
+                <view class="weui-cell__bd answer">{{answer.desc}}</view>
+                <view class="weui-cell__ft weui-cell__ft_in-radio" wx:if="{{answer.checked}}">
+                  <icon class="weui-icon-radio" type="success_no_circle" size="16"></icon>
+                </view>
+              </label>
+            </block>
+          </radio-group>
+        </view>
+      </view>
+    </block>
+    
+    <view class="button">
+      <button wx:if="{{currentShow>0}}" class="weui-btn mini-btn" type="primary" bindtap="changeCurrentShow" data-change="-1">
+        <text>上一题</text>
+      </button>
+      <button wx:if="{{currentShow<questionArray.length-1}}" class="weui-btn mini-btn" type="primary" bindtap="changeCurrentShow" data-change="1">
+        <text>下一题</text>
+      </button>
+      <button class="weui-btn mini-btn" type="primary" size="default">
+        <text class="iconfont icon-like">收藏</text>
+      </button>
+    </view>
+  </view>
+  <view class="page__ft"></view>
+</view>

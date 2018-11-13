@@ -1,0 +1,16 @@
+/* pages/me/me.wxss */
+.me-head{
+  background-color: wheat;
+}
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+.userinfo-detail{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 14px;
+}

@@ -1,0 +1,28 @@
+{
+  "pages": [
+    "pages/subject/subject",
+    "pages/me/me",
+    "pages/like/like",
+    "pages/setting/setting",
+    "pages/wrong/wrong",
+    "pages/like_detail/like_detail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/subject/subject",
+        "text": "课程"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我"
+      }
+    ]
+  }
+}
