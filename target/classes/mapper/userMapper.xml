@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE mapper PUBLIC "-//testMybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myj.miniapp.mapper.UserMapper">
+	<resultMap id="user_map" type="com.myj.miniapp.entity.UserInfo">
+		<id property="id" column="id" jdbcType="BIGINT"></id>
+		<result property="createTime" column="create_time" jdbcType="TIMESTAMP"></result>
+		<result property="updateTime" column="update_time" jdbcType="TIMESTAMP"></result>
+		<result property="openId" column="open_id" jdbcType="VARCHAR"></result>
+		<result property="nickName" column="nick_name" jdbcType="VARCHAR"></result>
+		<result property="gender" column="gender" jdbcType="TINYINT"></result>
+		<result property="language" column="langyage" jdbcType="VARCHAR"></result>
+		<result property="city" column="city" jdbcType="VARCHAR"></result>
+		<result property="province" column="province" jdbcType="VARCHAR"></result>
+		<result property="country" column="country" jdbcType="VARCHAR"></result>
+		<result property="avatarUrl" column="avatar_url" jdbcType="VARCHAR"></result>
+		<result property="age" column="age" jdbcType="INTEGER"></result>
+		<result property="grade" column="grade" jdbcType="INTEGER"></result>
+	</resultMap>
+	<select id="listUserInfo" resultMap="user_map">
+		select * from t_user_info
+	</select>
+
+	<insert id="insertUserInfo" parameterType="com.myj.miniapp.entity.UserInfo">
+		insert into t_user_info(create_time, update_time, open_id, nick_name, gender,
+		 language, city, province, country, avatar_url, age, grade)
+		values(current_time(), current_time(), #{openId}, #{nickName}, #{gender},
+		 #{language}, #{city}, #{province}, #{country}, #{avatarUrl}, #{age}, #{grade})
+	</insert>
+
+	<update id="updateUserInfo" parameterType="com.myj.miniapp.entity.UserInfo">
+		update t_user_info
+		set
+			update_time = current_time()
+			<if test="nickName!=null">
+				,nick_name = #{nickName}
+			</if>
+			<if test="gender!=null">
+				,gender = #{gender}
+			</if>
+			<if test="language!=null">
+				,language = #{language}
+			</if>
+			<if test="city!=null">
+				,city = #{city}
+			</if>
+			<if test="province!=null">
+				,province = #{province}
+			</if>
+			<if test="country!=null">
+				,country = #{country}
+			</if>
+			<if test="avatarUrl!=null">
+				,avatar_url = #{avatarUrl}
+			</if>
+			<if test="age!=null">
+				,age = #{age}
+			</if>
+			<if test="grade!=null">
+				,grade = #{grade}
+			</if>
+		where
+			open_id = #{openId}
+	</update>
+
+</mapper>
