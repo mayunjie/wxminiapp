@@ -1,0 +1,16 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/notice/index/index",
+    "pages/notice/create/create",
+    "pages/notice/detail/detail"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#338FFF",
+    "navigationBarTextStyle": "dark",
+    "navigationBarTitleText": "同学群",
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": false
+  }
+}

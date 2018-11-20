@@ -13,21 +13,20 @@
 		<result property="country" column="country" jdbcType="VARCHAR"></result>
 		<result property="avatarUrl" column="avatar_url" jdbcType="VARCHAR"></result>
 		<result property="age" column="age" jdbcType="INTEGER"></result>
-		<result property="grade" column="grade" jdbcType="INTEGER"></result>
 	</resultMap>
 	<select id="listUserInfo" resultMap="user_map">
 		select * from t_user_info
 	</select>
 
 	<insert id="insertUserInfo" parameterType="com.myj.miniapp.entity.UserInfo">
-		insert into t_user_info(create_time, update_time, open_id, nick_name, gender,
-		 language, city, province, country, avatar_url, age, grade)
+		insert into wx_user(create_time, update_time, open_id, nick_name, gender,
+		 language, city, province, country, avatar_url, age)
 		values(current_time(), current_time(), #{openId}, #{nickName}, #{gender},
-		 #{language}, #{city}, #{province}, #{country}, #{avatarUrl}, #{age}, #{grade})
+		 #{language}, #{city}, #{province}, #{country}, #{avatarUrl}, #{age})
 	</insert>
 
 	<update id="updateUserInfo" parameterType="com.myj.miniapp.entity.UserInfo">
-		update t_user_info
+		update wx_user
 		set
 			update_time = current_time()
 			<if test="nickName!=null">
@@ -53,9 +52,6 @@
 			</if>
 			<if test="age!=null">
 				,age = #{age}
-			</if>
-			<if test="grade!=null">
-				,grade = #{grade}
 			</if>
 		where
 			open_id = #{openId}

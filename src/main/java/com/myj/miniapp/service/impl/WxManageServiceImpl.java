@@ -1,13 +1,9 @@
 package com.myj.miniapp.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.myj.miniapp.cache.CustomCache;
-import com.myj.miniapp.service.CacheService;
 import com.myj.miniapp.service.WxManageService;
 import com.myj.miniapp.util.HttpUtils;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -28,8 +24,6 @@ public class WxManageServiceImpl implements WxManageService{
     @Value("${wx.auth.sessionHost}")
     private String sessionHost;
 
-    @Autowired
-    private CacheService cacheService;
     @Override
     public Map<String, Object> getWxSession(String wxCode) {
         StringBuffer sb = new StringBuffer();
@@ -43,15 +37,5 @@ public class WxManageServiceImpl implements WxManageService{
             return null;
         }
         return JSON.parseObject(res, Map.class);
-    }
-
-    @Override
-    public String createThirdSession(String wxOpenId, String wxSessionKey, Long expires) {
-        String thirdSessionKey = RandomStringUtils.randomAlphanumeric(64);
-        StringBuffer sb = new StringBuffer();
-        sb.append(wxSessionKey).append("#").append(wxOpenId);
-        CustomCache<String> cache = new CustomCache(thirdSessionKey, sb.toString(), expires);
-        cacheService.put(thirdSessionKey, cache);
-        return thirdSessionKey;
     }
 }
