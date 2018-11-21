@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE mapper PUBLIC "-//testMybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myj.miniapp.mapper.ActivityMapper">
+	<resultMap id="activity_map" type="com.myj.miniapp.entity.Activity">
+		<id property="id" column="id" jdbcType="BIGINT"></id>
+		<result property="createTime" column="create_time" jdbcType="TIMESTAMP"></result>
+		<result property="updateTime" column="update_time" jdbcType="TIMESTAMP"></result>
+		<result property="openId" column="open_id" jdbcType="VARCHAR"></result>
+		<result property="nickName" column="nick_name" jdbcType="VARCHAR"></result>
+		<result property="title" column="title" jdbcType="VARCHAR"></result>
+		<result property="activityTime" column="activity_time" jdbcType="TIMESTAMP"></result>
+		<result property="position" column="position" jdbcType="VARCHAR"></result>
+		<result property="nickName" column="nick_name" jdbcType="VARCHAR"></result>
+		<result property="phone" column="phone" jdbcType="VARCHAR"></result>
+		<result property="remark" column="remark" jdbcType="VARCHAR"></result>
+		<result property="status" column="status" jdbcType="TINYINT"></result>
+	</resultMap>
+
+
+	<insert id="insertActivity" parameterType="com.myj.miniapp.entity.Activity" useGeneratedKeys="true" keyProperty="id">
+		insert into activity(create_time, update_time, open_id, nick_name, title, activity_time,
+		position
+		<if test="phone!=null">
+			, phone
+		</if>
+		<if test="remark!=null">
+			, remark
+		</if>
+		)
+		values(current_time(), current_time(), #{openId}, #{nickName}, #{title}, #{activityTime},
+		#{position}
+		<if test="phone!=null">
+			, #{phone}
+		</if>
+		<if test="remark!=null">
+			, #{remark}
+		</if>
+		)
+	</insert>
+
+	<select id="getMyCreateActivity" resultMap="activity_map" parameterType="java.lang.String">
+		select * from activity where open_id = #{openId} and status = 1
+	</select>
+
+	<select id="getGroupActivity" resultMap="activity_map" parameterType="java.lang.String">
+		select a.* from group_activity_relation r, activity a where r.activity_id = a.id
+		and r.open_group_id = #{openGId}
+	</select>
+
+	<select id="getActivityById" resultMap="activity_map" parameterType="java.lang.Long">
+		select * from activity where id = #{id} and status = 1
+	</select>
+</mapper>

@@ -23,8 +23,7 @@ Page({
         this.setData({
           noticeId: opt.noticeId,
           baseData: res.data.notice,
-          year: res.data.notice.createTime.substring(0, 4),
-          date: res.data.notice.createTime.substring(0, 10)
+          year: res.data.notice.createTime.substring(0, 4)
         })
       }
     })

@@ -2,8 +2,8 @@
   <view class='bg-title'>群通知</view>
   <view class='bg-star'>
     <view></view>
-    <image src='../../../imgs/star.svg' style='width:50rpx;height:50rpx;margin:0 16rpx;'></image>
-    <view></view>
+    <!-- <image src='../../../imgs/star.svg' style='width:50rpx;height:50rpx;margin:0 16rpx;'></image>
+    <view></view> -->
   </view>
 </view>
 <view style='padding:10rpx 40rpx;box-sizing: border-box;background:#fff;'>
@@ -12,7 +12,7 @@
   <view class='sign'>
     <view class='content'>
       <view>{{baseData.nickName}}</view>
-      <view>{{date}}</view>
+      <view>{{baseData.showTime}}</view>
     </view>
      <image src='../../../imgs/committee.jpg' class='cachet-star'></image>
   </view>

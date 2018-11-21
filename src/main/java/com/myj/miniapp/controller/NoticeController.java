@@ -93,4 +93,14 @@ public class NoticeController extends BaseController {
         return result;
     }
 
+    @RequestMapping("/group/list")
+    public JSONObject getGroupList(String openGId){
+        JSONObject result = new JSONObject();
+        List<Notice> noticeList = noticeService.getGroupNotice(openGId);
+        result.put("code", "200");
+        result.put("msg", "success");
+        result.put("noticeList", noticeList);
+        return result;
+    }
+
 }

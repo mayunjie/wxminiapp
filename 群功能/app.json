@@ -3,7 +3,10 @@
     "pages/login/login",
     "pages/notice/index/index",
     "pages/notice/create/create",
-    "pages/notice/detail/detail"
+    "pages/notice/detail/detail",
+    "pages/activity/index/index",
+    "pages/activity/create/create",
+    "pages/activity/detail/detail"
   ],
   "window": {
     "navigationBarBackgroundColor": "#338FFF",
@@ -12,5 +15,30 @@
     "backgroundColor": "#eeeeee",
     "backgroundTextStyle": "dark",
     "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/login/login",
+        "text": "群公告",
+        "selectedColor": "#338FFF",
+        "iconPath": "image/tab_01.jpg",
+        "selectedIconPath": "image/tab_05.jpg"
+      },
+      {
+        "pagePath": "pages/notice/index/index",
+        "text": "群公告",
+        "selectedColor": "#338FFF",
+        "iconPath": "image/tab_01.jpg",
+        "selectedIconPath": "image/tab_05.jpg"
+      },
+      {
+        "pagePath": "pages/activity/detail/detail",
+        "text": "群活动",
+        "selectedColor": "#338FFF",
+        "iconPath": "image/tab_02.jpg",
+        "selectedIconPath": "image/tab_06.jpg"
+      }
+    ]
   }
 }

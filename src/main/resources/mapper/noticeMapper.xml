@@ -10,7 +10,7 @@
 		<result property="content" column="content" jdbcType="VARCHAR"></result>
 	</resultMap>
 	<select id="listNoticeByGroup" resultMap="notice_map" parameterType="java.lang.String">
-		select r.* from group_notice_relation r left join notice n on r.notice_id = n.id
+		select n.* from group_notice_relation r left join notice n on r.notice_id = n.id
 		where r.open_group_id = #{openGId} and r.status = 1 and n.status = 1
 	</select>
 

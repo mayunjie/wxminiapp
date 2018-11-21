@@ -24,7 +24,7 @@ page {
 .bg-star view {
   width: 50%;
   height: 6rpx;
-  background: #d81e06;
+  background: green;
 }
 
 .title {

@@ -11,31 +11,33 @@ Page({
     
   },
   onShow: function () {
+    this.getGroupData();
     this.getMyCreateData();
   },
   
   getGroupData: function(){
     var that = this;
+    console.log(app.globalData.openGId)
     if (app.globalData.openGId == ''){
       return;
     }
     //获取群组公告
-    // wx.request({
-    //   url: '',
-    //   data:{
-    //     openGroupId: app.globalData.openGId
-    //   },
-    //   header: {
-    //     'content-type': 'application/x-www-form-urlencoded', // 默认值
-    //     'token': app.globalData.token
-    //   },
-    //   method: "POST",
-    //   success: function (res) {
-    //     that.setData({
-    //       groupData: res.data.noticeList
-    //     })
-    //   }
-    // })
+    wx.request({
+      url: app.globalData.host + '/notice/group/list',
+      data:{
+        openGId: app.globalData.openGId
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded', // 默认值
+        'token': app.globalData.token
+      },
+      method: "POST",
+      success: function (res) {
+        that.setData({
+          groupData: res.data.noticeList
+        })
+      }
+    })
   },
 
   getMyCreateData: function(){

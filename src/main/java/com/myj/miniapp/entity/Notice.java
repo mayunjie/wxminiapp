@@ -22,4 +22,6 @@ public class Notice {
     private Date createTime;
 
     private Date updateTime;
+
+    private String showTime;
 }
