@@ -5,17 +5,17 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class NoticeInGroup{
+public class ActivityInGroup {
 
     private Long id;
 
     private String openGId;
 
-    private Long noticeId;
+    private Long activityId;
 
     private Date createTime;
 
     private Date updateTime;
 
-    private Notice notice;
+    private Activity activity;
 }

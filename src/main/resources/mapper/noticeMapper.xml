@@ -24,7 +24,7 @@
 	</select>
 
 	<insert id="insertNoticeInGroup" parameterType="com.myj.miniapp.entity.NoticeInGroup">
-		insert into group_notice_relation(create_time, update_time, open_group_id, notice_id)
+		insert ignore into group_notice_relation(create_time, update_time, open_group_id, notice_id)
 		values(current_time(), current_time(), #{openGId}, #{noticeId})
 	</insert>
 

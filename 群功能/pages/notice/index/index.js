@@ -8,11 +8,22 @@ Page({
     createData: '',
   },
   onLoad: function () {
-    
-  },
-  onShow: function () {
-    this.getGroupData();
-    this.getMyCreateData();
+    if(app.globalData.token){
+      this.this.getMyCreateData();
+    }else{
+      app.tokenReadyCallback = () => {
+        this.getMyCreateData();
+      }
+    }
+    if (app.globalData.opts.scene == '1044'){
+      if (app.globalData.openGId){
+        this.getGroupData();
+      }else{
+        app.openGIdReadyCallback = () =>{
+          this.getGroupData();
+        }
+      }
+    }
   },
   
   getGroupData: function(){

@@ -12,10 +12,24 @@
 		<result property="nickName" column="nick_name" jdbcType="VARCHAR"></result>
 		<result property="phone" column="phone" jdbcType="VARCHAR"></result>
 		<result property="remark" column="remark" jdbcType="VARCHAR"></result>
+		<result property="limitNumber" column="limit_number" jdbcType="INTEGER"></result>
 		<result property="status" column="status" jdbcType="TINYINT"></result>
 	</resultMap>
 
-
+	<resultMap id="user_map" type="com.myj.miniapp.entity.UserInfo">
+		<id property="id" column="id" jdbcType="BIGINT"></id>
+		<result property="createTime" column="create_time" jdbcType="TIMESTAMP"></result>
+		<result property="updateTime" column="update_time" jdbcType="TIMESTAMP"></result>
+		<result property="openId" column="open_id" jdbcType="VARCHAR"></result>
+		<result property="nickName" column="nick_name" jdbcType="VARCHAR"></result>
+		<result property="gender" column="gender" jdbcType="TINYINT"></result>
+		<result property="language" column="langyage" jdbcType="VARCHAR"></result>
+		<result property="city" column="city" jdbcType="VARCHAR"></result>
+		<result property="province" column="province" jdbcType="VARCHAR"></result>
+		<result property="country" column="country" jdbcType="VARCHAR"></result>
+		<result property="avatarUrl" column="avatar_url" jdbcType="VARCHAR"></result>
+		<result property="age" column="age" jdbcType="INTEGER"></result>
+	</resultMap>
 	<insert id="insertActivity" parameterType="com.myj.miniapp.entity.Activity" useGeneratedKeys="true" keyProperty="id">
 		insert into activity(create_time, update_time, open_id, nick_name, title, activity_time,
 		position
@@ -25,6 +39,9 @@
 		<if test="remark!=null">
 			, remark
 		</if>
+		<if test="limitNumber!=null">
+			, limit_number
+		</if>
 		)
 		values(current_time(), current_time(), #{openId}, #{nickName}, #{title}, #{activityTime},
 		#{position}
@@ -33,6 +50,9 @@
 		</if>
 		<if test="remark!=null">
 			, #{remark}
+		</if>
+		<if test="limitNumber!=null">
+			, #{limitNumber}
 		</if>
 		)
 	</insert>
@@ -46,7 +66,38 @@
 		and r.open_group_id = #{openGId}
 	</select>
 
+	<select id="getMyJoinActivity" resultMap="activity_map" parameterType="java.lang.String">
+		select a.* from activity_enroll e, activity a
+		where e.activity_id = a.id and e.open_id = #{openId}
+	</select>
+
 	<select id="getActivityById" resultMap="activity_map" parameterType="java.lang.Long">
 		select * from activity where id = #{id} and status = 1
 	</select>
+
+	<!--报名请假 -->
+	<insert id="insertEnroll" parameterType="com.myj.miniapp.entity.ActivityEnroll">
+		insert into activity_enroll(create_time, update_time, activity_id, open_id, type)
+		VALUES (
+		CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), #{activityId}, #{openId}, #{type}
+		) ON DUPLICATE KEY update type = #{type}
+
+	</insert>
+
+	<!-- 报名或请假用户的信息 -->
+	<select id="getEnrolledUserInfo" resultMap="user_map" parameterType="java.util.Map">
+		select u.* from activity_enroll e, wx_user u
+		where activity_id = #{activityId} and type=#{type} and u.open_id = e.open_id
+	</select>
+
+	<!-- 当前用户报名信息 -->
+	<select id="getEnrollType" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select type from  activity_enroll
+		where activity_id = #{activityId} and open_id=#{openId}
+	</select>
+
+	<insert id="insertActivityInGroup" parameterType="com.myj.miniapp.entity.ActivityInGroup">
+		insert ignore into group_activity_relation(create_time, update_time, open_group_id, activity_id)
+		values(current_time(), current_time(), #{openGId}, #{activityId})
+	</insert>
 </mapper>

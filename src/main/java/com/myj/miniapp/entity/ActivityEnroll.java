@@ -4,18 +4,21 @@ import lombok.Data;
 
 import java.util.Date;
 
+/**
+ * 活动报名
+ */
 @Data
-public class NoticeInGroup{
+public class ActivityEnroll {
 
     private Long id;
-
-    private String openGId;
-
-    private Long noticeId;
 
     private Date createTime;
 
     private Date updateTime;
 
-    private Notice notice;
+    private Long activityId;
+
+    private String openId;
+
+    private Integer type;
 }

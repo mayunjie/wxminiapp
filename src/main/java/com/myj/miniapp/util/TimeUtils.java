@@ -12,11 +12,22 @@ public class TimeUtils {
 
     public static final String HOUR_FORMAT = "yyyy-MM-dd hh:mm";
 
+    public static final String UNTIL_DAY = "yyyy-MM-dd";
+
+    public static final String UNTIL_HOUR = "hh:mm";
+
+
     public static String convertDate(Date date){
+        return convertDate(date, FORMAT);
+    }
+    public static String convertDate(Date date, String formatStr){
         if(date == null){
             return StringUtils.EMPTY;
         }
-        SimpleDateFormat format = new SimpleDateFormat(FORMAT);
+        if(StringUtils.isBlank(formatStr)){
+            formatStr = FORMAT;
+        }
+        SimpleDateFormat format = new SimpleDateFormat(formatStr);
         return format.format(date);
     }
 
@@ -34,5 +45,7 @@ public class TimeUtils {
     public static void main(String[] args) {
         String str = "2018-11-11 21:29";
         System.out.println(stringToDate(str, HOUR_FORMAT));
+        Date date = new Date();
+        System.out.println(convertDate(date, UNTIL_HOUR));
     }
 }

@@ -62,7 +62,7 @@ public class NoticeController extends BaseController {
     @RequestMapping("/relate/group")
     public JSONObject relateGroup(HttpServletRequest request){
         JSONObject result = new JSONObject();
-        String noticeId = request.getParameter("noticeId");
+        Long noticeId = Long.parseLong(request.getParameter("noticeId"));
         try{
             JSONObject groupObject = JSONObject.parseObject(decrpyt(request));
             String openGId = String.valueOf(groupObject.get("openGId"));

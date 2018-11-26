@@ -4,13 +4,12 @@ Page({
   data: {
     activityId: '',
     activityData: '',  //任务详细数据，如标题，发起人等
-    joinerData: '',//参与活动的人员详情列表数据
-    joinerNumber: '',  //参与了该任务的人员数量
     okWord: '立即报名',
-    enrollToast: false,
-    joinerName: '',
-    joinerTel: '',
-    joinerRemark: '',
+    enrollType: '',//当前用户报名还是请假
+    enrollList: '',//报名列表
+    leaveList: '',//请假列表
+    enrollNumber: '',
+    leaveNumber: ''
   },
   onLoad: function (opt) {
     wx.showShareMenu({
@@ -25,6 +24,7 @@ Page({
     })
     this.getActivityInfo();
   },
+
   getActivityInfo: function(){
     var that = this;
     //加载活动信息
@@ -39,33 +39,58 @@ Page({
         activityId: that.data.activityId,
       },
       success: function (res) {
+        console.log("get activity")
         wx.hideLoading();
+        console.log(res.data.enrollList.length)
         that.setData({
-          activityData: res.data.activity
+          activityData: res.data.activity,
+          enrollList: res.data.enrollList,
+          enrollType: res.data.enrollType,
+          leaveList: res.data.leaveList,
+          enrollNumber: res.data.enrollList.length,
+          leaveNumber: res.data.leaveList.length
         })
       }
     });
-  },
-
-  getJoinInfo: function(){
-    wx.request({  //请求任务的参与者列表
-      url: `${app.globalData.host}/application/link/getTaskJoiner.php`,
-      data: {
-        taskid: opt.taskid,
+  },  
+  //报名
+  enroll: function (e) {
+    var type = e.currentTarget.dataset.type;
+    if (this.data.enrollType == type){
+      console.log("重复动作")
+      return;
+    }
+    var that = this;
+    wx.request({
+      url: app.globalData.host + '/activity/enroll',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded', // 默认值
+        'token': app.globalData.token
       },
-      dataType: 'JSONP',
+      method: "POST",
+      data: {
+        activityId: that.data.activityId,
+        enrollType: type,
+      },
       success: function (res) {
-        var data0 = JSON.parse(res.data);
-        that.setData({
-          joinerData: data0
-        })
+        console.log(res.data)
+        if(res.data.code=='200'){
+          that.setData({
+            enrollType: res.data.enrollType,
+            enrollList: res.data.enrollList,
+            leaveList: res.data.leaveList,
+            enrollNumber: res.data.enrollList.length,
+            leaveNumber: res.data.leaveList.length
+          })
+        }
       }
-    });
+    })
   },
+  //分享
   onShareAppMessage: function (res) {
     var that = this;
     return {
-      path: `/pages/link/enroll/enroll?taskid=${that.data.taskid}&fromClickId=${app.globalData.clickId}`,
+      path: '/pages/activity/detail/detail?activityId=' + that.data.activityId,
       success: function (res) {
         var shareTickets = res.shareTickets;
         if (!shareTickets) {
@@ -74,102 +99,27 @@ Page({
         wx.getShareInfo({
           shareTicket: shareTickets[0],
           success: function (res) {
-            var encryptedData = res.encryptedData;
-            var iv = res.iv;
+            //关联群组与公告
             wx.request({
-              //url: 'https://test.hytips.com/wechat/Gold/demo.php',
-              url: app.globalData.host + '/application/link/wx_xcx.php',
+              url: app.globalData.host + '/activity/relate/group',
               data: {
-                appid: app.globalData.AppID,  //小程序ID
-                sessionKey: app.globalData.session_key,
-                encryptedData: encryptedData,
-                iv: iv
+                activityId: that.data.activityId,
+                encryptedData: res.encryptedData,
+                iv: res.iv
               },
-              dataType: 'JSONP',
+              header: {
+                'content-type': 'application/x-www-form-urlencoded', // 默认值
+                'token': app.globalData.token
+              },
+              method: "POST",
               success: function (res) {
-                //此处有坑:返回的数据不是JSON字符串!
-                var GId = JSON.parse(res.data.substring(res.data.indexOf('{'), res.data.lastIndexOf('}') + 1)).openGId;
-                wx.request({
-                  url: app.globalData.host + '/application/link/storeGId.php',
-                  data: {
-                    gid: GId,
-                    taskid: that.data.taskid,
-                  },
-                  dataType: 'JSONP',
-                  success: function (res) { }
-                });
+                console.log(res.data.msg);
               }
             });
           }
         })
-      },
-      fail: function (res) {
-        // 转发失败
       }
     }
-  },
-  ok: function () {
-    var that = this;
-    that.setData({
-      enrollToast: true,
-    })
-  },
-  cancel: function () {
-    var that = this;
-    that.setData({
-      enrollToast: false,
-    })
-  },
-  bindJoinerNameInput: function (e) {
-    var that = this;
-    that.setData({
-      joinerName: e.detail.value,
-    });
-  },
-  bindJoinerTelInput: function (e) {
-    var that = this;
-    that.setData({
-      joinerTel: e.detail.value,
-    });
-  },
-  bindJoinerRemarkInput: function (e) {
-    var that = this;
-    that.setData({
-      joinerRemark: e.detail.value,
-    });
-  },
-  join: function () {
-    var that = this;
-    wx.showLoading({
-      title: '加载中...',
-    })
-    wx.request({  //加入此活动，并将用户更多信息存入数据库
-      url: app.globalData.host + '/application/link/joinjielongtask.php',
-      data: {
-        openid: app.globalData.openid,
-        taskid: that.data.taskid,
-        joinerName: that.data.joinerName,
-        joinerTel: that.data.joinerTel,
-        joinerRemark: that.data.joinerRemark,
-      },
-      dataType: 'JSONP',
-      success: function (res) {
-        wx.hideLoading();
-        wx.showToast({
-          title: '报名成功',
-          icon: 'success',
-          duration: 2000
-        });
-        that.setData({
-          okWord: '已报名',
-          joinerNumber: Number(that.data.joinerNumber) + 1,
-          enrollToast: false,
-        });
-        wx.redirectTo({ //刷新页面
-          url: '../enroll/enroll?taskid=' + that.data.taskid
-        })
-      }
-    });
-  },
+  }
 })
 

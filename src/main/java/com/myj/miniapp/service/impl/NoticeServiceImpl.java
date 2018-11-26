@@ -35,7 +35,7 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
-    public int relateGroup(String openGId, String noticeId){
+    public int relateGroup(String openGId, Long noticeId){
         NoticeInGroup noticeInGroup = new NoticeInGroup();
         noticeInGroup.setOpenGId(openGId);
         noticeInGroup.setNoticeId(noticeId);

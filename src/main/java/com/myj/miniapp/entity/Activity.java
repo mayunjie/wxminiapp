@@ -29,5 +29,11 @@ public class Activity {
 
     private String remark;
 
+    private Integer limitNumber;
+
     private Integer status;
+
+    private String day;
+
+    private String hour;
 }

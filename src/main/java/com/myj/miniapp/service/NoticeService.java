@@ -9,7 +9,7 @@ public interface NoticeService {
 
     Notice getNotice(Long id);
 
-    int relateGroup(String openGId, String noticeId);
+    int relateGroup(String openGId, Long noticeId);
 
     List<Notice> getMyCreateNotice(String openId);
 
