@@ -54,11 +54,20 @@
   font-size: 12px;
 }
 
+
+.enroll-button {
+  width:50%;
+  border-radius:0;
+  color:white;
+}
+
 .enroll {
   position: fixed;
-  bottom: 20rpx;
-  background: #338fff;
-  color: #fff;
+  bottom: 0rpx;
+  background: #fff; 
+  color: #fff; 
+  width: 100%; 
   letter-spacing: 2rpx;
-  width:100%;
+  display:flex; 
+  flex-direction:row;
 }

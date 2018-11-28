@@ -12,33 +12,24 @@ App({
   },
 
   login: function(){
+    wx.showLoading({
+      mask: "true"
+    })
     var that = this;
     // 登录,发送 res.code 到后台换取 openId, sessionKey, unionId
     wx.login({
       success: res => {
         var code = res.code;
-        wx.request({
-          url: that.globalData.host + '/login/wx_login',
+        that.Util.ajax({
+          url: '/login/wx_login',
           data: {
             code: code
           },
-          header: {
-            'content-type': 'application/x-www-form-urlencoded' // 默认值
-          },
-          method: "POST",
-          success: function (res) {
-            console.log(res);
-            if (res.data.code == '200') {
-              //记录token
-              that.globalData.token = res.data.token;
-              //回调页面方法
-              if (that.tokenReadyCallback){
-                that.tokenReadyCallback();
-              }
-              that.getUserInfo();
-            } else {
-              //todo 弹出模态框
-            }
+          resolve: function(res){
+            //记录token
+            wx.hideLoading();
+            that.globalData.token = res.data.token;
+            that.getUserInfo();
           }
         })
       }
@@ -51,26 +42,24 @@ App({
       wx.getUserInfo({
         success: res => {
           // 可以将 res 发送给后台解码出 unionId
-          that.globalData.userInfo = res.userInfo
-          wx.request({
-            url: that.globalData.host + '/user/regist',
+          var useInfo = res.userInfo
+          that.Util.ajax({
+            url: '/user/regist',
             data: {
               encryptedData: res.encryptedData,
               iv: res.iv
             },
-            header: {
-              'content-type': 'application/x-www-form-urlencoded', // 默认值
-              'token': that.globalData.token
-            },
-            method: "POST",
-            success: function (res) {
-              if (res.data.code == '200') {
-                //判断如果从群组进入，则
-                if (that.globalData.opts.scene == 1044) {
-                  that.getGroupInfo();
+            resolve: function(res){
+              that.globalData.userInfo = useInfo
+              //判断如果从群组进入，则
+              if (that.globalData.opts.scene == 1044) {
+                that.getGroupInfo();
+              }else{
+                //页面函数回调
+                wx.hideLoading();
+                if(that.paramReadyCallBack){
+                  that.paramReadyCallBack()
                 }
-              } else {
-                //todo 弹出模态框
               }
             }
           })
@@ -101,21 +90,17 @@ App({
     wx.getShareInfo({
       shareTicket: that.globalData.opts.shareTicket,
       success: function (res) {
-        wx.request({
-          url: that.globalData.host + '/group/id',
+        that.Util.ajax({
+          url: '/group/id',
           data: {
             encryptedData: res.encryptedData,
             iv: res.iv
           },
-          header: {
-            'content-type': 'application/x-www-form-urlencoded', // 默认值
-            'token': that.globalData.token
-          },
-          method: "POST",
-          success: function (res) {
+          resolve: function(res){
             that.globalData.openGId = res.data.openGId
-            if (openGIdReadyCallback){
-              that.openGIdReadyCallback();
+            wx.hideLoading();
+            if (paramReadyCallBack) {
+              that.paramReadyCallBack();
             }
           }
         })
@@ -129,7 +114,7 @@ App({
   globalData: {
     userInfo: null,
     token: '',
-    host: 'http://localhost:8080',
+    host: 'http://47.105.180.224:8080/',
     opts: '',
     openGId: ''
   }

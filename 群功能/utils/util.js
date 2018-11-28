@@ -15,14 +15,20 @@ const formatNumber = n => {
 }
 
 //wxrequest 封装
-const ajax = (url, data, resolve, reject) => {
-  console.log("wxRequest")
+const ajax = (config) => {
   var app = getApp();
-  var contentType = 'application/x-www-form-urlencoded'; // 默认值
-  var token = app.globalData.token;
-  var method = 'POST';
+  let {
+    url = "",
+    data = {},
+    contentType = 'application/x-www-form-urlencoded',
+    method = 'POST',
+    token = app.globalData.token,
+    resolve,
+    reject,
+    ...other
+  } = { ...config }
   wx.request({
-    url: url,
+    url: app.globalData.host + url,
     data: data,
     header: {
       'content-type': contentType, // 默认值
@@ -41,17 +47,24 @@ const ajax = (url, data, resolve, reject) => {
         }
       }
       //session异常
-      if (res.data.code == '501') {
-        wx.showToast({
-          title: '登录超时，请重新启动小程序'
+      else if (res.data.code == '501') {
+        wx.showModal({
+          title: '提示',
+          content: '登录超时',
+          success(res) {
+            if (res.confirm) {
+              app.login();
+            }
+          }
         })
       } else {
         //失败处理
-        if(reject!=undefined){
+        if (reject != undefined) {
           reject(res)
-        }else{
+        } else {
           wx.showToast({
-            title: res.data.msg
+            title: res.data.msg,
+            icon: 'none'
           })
         }
       }
@@ -59,15 +72,15 @@ const ajax = (url, data, resolve, reject) => {
     fail: function (res) {
       if (reject != undefined) {
         reject(res);
-      }else{
+      } else {
         wx.showToast({
-          title: '请求异常！'
+          title: '请求异常！',
+          icon: 'none'
         })
       }
     }
   })
 }
-
 module.exports = {
   formatTime: formatTime,
   ajax, ajax

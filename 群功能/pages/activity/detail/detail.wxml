@@ -47,8 +47,8 @@
     </view>
   </view>
 
-  <view style="display:flex; flex-direction:row;">
-    <button class='enroll' bindtap='enroll' data-type="1">报名</button>
-    <button class='enroll' bindtap='enroll' data-type="2">请假</button>
+  <view class="enroll">
+    <button class='enroll-button' style="background-color: {{enrollColor}}"bindtap='enroll' data-type="1" >报名</button>
+    <button class='enroll-button' style="background-color: {{leaveColor}}"bindtap='enroll' data-type="2">请假</button>
   </view>
 </view>

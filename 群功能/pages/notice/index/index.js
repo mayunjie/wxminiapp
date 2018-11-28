@@ -7,66 +7,51 @@ Page({
     //我创建的数据
     createData: '',
   },
-  onLoad: function () {
-    if(app.globalData.token){
-      this.this.getMyCreateData();
-    }else{
-      app.tokenReadyCallback = () => {
-        this.getMyCreateData();
-      }
-    }
-    if (app.globalData.opts.scene == '1044'){
-      if (app.globalData.openGId){
-        this.getGroupData();
+  
+  onShow: function(){
+    var that = this;
+    //群组进入
+    if (app.globalData.opts.scene == "1044"){
+      if(app.globalData.openGId){
+        that.getData();
       }else{
-        app.openGIdReadyCallback = () =>{
-          this.getGroupData();
+        app.paramReadyCallBack = () =>{
+          that.getData()
+        }
+      }
+    }else{
+      if (app.globalData.userInfo) {
+        that.getData();
+      } else {
+        app.paramReadyCallBack = () => {
+          that.getData()
         }
       }
     }
   },
-  
-  getGroupData: function(){
+
+  getData : function(){
+    wx.showLoading({
+      mask: "true"
+    })
     var that = this;
-    console.log(app.globalData.openGId)
-    if (app.globalData.openGId == ''){
-      return;
-    }
-    //获取群组公告
-    wx.request({
-      url: app.globalData.host + '/notice/group/list',
-      data:{
+    app.Util.ajax({
+      url: '/notice/list',
+      data: {
         openGId: app.globalData.openGId
       },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded', // 默认值
-        'token': app.globalData.token
-      },
-      method: "POST",
-      success: function (res) {
-        that.setData({
-          groupData: res.data.noticeList
-        })
-      }
-    })
-  },
-
-  getMyCreateData: function(){
-    var that = this;
-    //获取群组公告
-    wx.request({
-      url: app.globalData.host + '/notice/my/list',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded', // 默认值
-        'token': app.globalData.token
-      },
-      method: "POST",
-      success: function (res) {
-        console.log(res.data);
-        that.setData({
-          createData: res.data.noticeList
-        })
-        console.log(that.data)
+      resolve:function(res){
+        wx.hideLoading();
+        if (res.data.groupList){
+          that.setData({
+            groupData: res.data.groupList
+          })
+        }
+        if (res.data.myCreateList){
+          that.setData({
+            createData: res.data.myCreateList
+          })
+        }
       }
     })
   },

@@ -8,27 +8,39 @@ Page({
   },
   onShow: function () {
     var that = this;
-    that.getData();
+    //群组进入
+    if (app.globalData.opts.scene == "1044") {
+      if (app.globalData.openGId) {
+        that.getData();
+      } else {
+        app.paramReadyCallBack = () => {
+          that.getData()
+        }
+      }
+    } else {
+      if (app.globalData.userInfo) {
+        that.getData();
+      } else {
+        app.paramReadyCallBack = () => {
+          that.getData()
+        }
+      }
+    }
   },
   
 
   getData: function(){
+    wx.showLoading({
+      mask: true,
+    })
     var that = this;
-    var data = {};
-    if(app.globalData.scene = '1044'){
-      data = {
-        openGId: app.globalData.openGId
-      }
+    var data = {
+      openGId: app.globalData.openGId
     }
-    wx.request({  //请求我参加的活动列表
-      url: app.globalData.host + '/activity/list',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded', // 默认值
-        'token': app.globalData.token
-      },
-      data:data,
-      method: "POST",
-      success: function (res) {
+    app.Util.ajax({
+      url: '/activity/list',
+      data: data,
+      resolve: function(res){
         wx.hideLoading();
         that.setData({
           createData: res.data.myCreate,
@@ -36,7 +48,7 @@ Page({
           joinData: res.data.myJoin
         })
       }
-    });
+    })
   },
 
   swichNav: function (e) {
