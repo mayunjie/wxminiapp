@@ -1,5 +1,5 @@
 <view style='padding:10rpx 40rpx;box-sizing: border-box;background:#fff;'>
-  <view class='bg-title'>公告</view>
+  <view class='bg-title'>公    告</view>
   <view class='bg-star'>
     <view></view>
   </view>
@@ -7,7 +7,7 @@
 <view style='padding:10rpx 40rpx;box-sizing: border-box;background:#fff;'>
   <view class='title'>{{baseData.title}}</view>
   <text class="textContent">{{baseData.content}}</text>
-  <view style="display:flex;justify-content:flex-end;">
+  <view style="display:flex;justify-content:flex-end; margin-top:40rpx;">
     <view style="width:200rpx;text-align:center;margin-right:40rpx">
       <view>{{baseData.nickName}}</view>
       <view>{{baseData.showTime}}</view>

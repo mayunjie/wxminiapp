@@ -1,8 +1,6 @@
 <view style='padding:10rpx 40rpx;box-sizing: border-box;background:#fff;'>
-  <view class='bg-title'>群通知</view>
+  <view class='bg-title'>公    告</view>
   <view class='bg-star'>
-    <view></view>
-    <image src='../../../imgs/star.svg' style='width:50rpx;height:50rpx;margin:0 16rpx;'></image>
     <view></view>
   </view>
 </view>
@@ -17,4 +15,6 @@
   </view>
 </view>
 
-<button class='ok' bindtap='ok'>完 成</button>
+<view class="ok">
+  <button class='ok-button' bindtap='ok'>完 成</button>
+</view>

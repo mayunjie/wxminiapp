@@ -5,7 +5,7 @@
   </view>
   
   <!-- 群内通知start -->
-  <view wx:if='{{currentTab==0}}'>
+  <view wx:if='{{currentTab==0}}' style="margin-bottom:100rpx;">
     <view wx:if='{{groupData==""}}' style='color:gray;padding:40rpx 0;text-align:center;'>
       从群内打开该小程序才能查看到群通知
     </view>
@@ -19,7 +19,7 @@
   <!-- 群内通知end -->
 
   <!-- 我创建的通知start -->
-    <view wx:if='{{currentTab==1}}'>
+    <view wx:if='{{currentTab==1}}' style="margin-bottom:100rpx;">
       <view wx:for="{{createData}}" data-noticeid="{{item.id}}" bindtap='gotoEnroll' class='item'>
         <view style='font-weight:bold;'>
           {{item.title}}
@@ -28,10 +28,7 @@
       </view>
     </view>
   <!-- 我创建的通知end-->
-  
-
-  <view direction="all" class='creat' bindtap='creat'>
-    创建通知
+  <view class="create">
+    <button class='create-button' bindtap='create'>创建通知</button>
   </view>
-
 </view>

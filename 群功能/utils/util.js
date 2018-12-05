@@ -61,9 +61,14 @@ const ajax = (config) => {
         //失败处理
         if (reject != undefined) {
           reject(res)
-        } else {
+        } else if(res.data.msg){
           wx.showToast({
             title: res.data.msg,
+            icon: 'none'
+          })
+        } else{
+          wx.showToast({
+            title: "请求异常！",
             icon: 'none'
           })
         }

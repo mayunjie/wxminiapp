@@ -55,7 +55,7 @@ Page({
       console.log("重复动作")
       return;
     }
-    if (type == 1 && this.data.enrollNumber >= this.data.activityData.limitNumber){
+    if (type == 1 && this.data.enrollNumber && this.data.enrollNumber >= this.data.activityData.limitNumber){
       wx.showToast({
         title: '达到人数上限',
       })

@@ -14,9 +14,11 @@
       </view>
     </picker>
   </view>
+  <view class='title'>人数限制:</view>
+  <input placeholder='整数' value='{{limitNumber}}' bindinput='bindLimitInput' maxlength='32'></input>
   <view class='title'>活动地点:</view>
   <view class='location'>
-    <input placeholder='输入地点' style='width:73%;' value='{{address}}' bindinput='bindAddressInput'></input>
+    <input placeholder='输入地点' style='width:73%;' value='{{position}}' bindinput='bindAddressInput'></input>
     <view bindtap='getMap'>
       <image src='../../../image/location.svg' style='width:20px;'></image>
       地图

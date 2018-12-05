@@ -8,7 +8,7 @@
     "pages/activity/detail/detail"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#338FFF",
+    "navigationBarBackgroundColor": "#2F4F4F",
     "navigationBarTextStyle": "dark",
     "navigationBarTitleText": "同学群",
     "backgroundColor": "#eeeeee",

@@ -14,10 +14,11 @@ Page({
     title: '', //接龙标题
     activityDay: '', //活动日期
     activityHour: '', //活动时间
-    address: '',
+    position: '',
     nickName: '',
     phone: '',
     remark: '',
+    limitNumber: ''
   },
   onLoad: function () {
     var that = this;
@@ -45,10 +46,16 @@ Page({
       title: e.detail.value,
     });
   },
+  bindLimitInput:function(e) {
+    var that = this;
+    that.setData({
+      limitNumber: e.detail.value,
+    });
+  },
   bindAddressInput: function (e) {
     var that = this;
     that.setData({
-      address: e.detail.value,
+      position: e.detail.value,
     });
   },
   bindNameInput: function (e) {
@@ -78,7 +85,7 @@ Page({
           var latitude = res.latitude
           var longitude = res.longitude
           that.setData({
-            address: res.name + '(' + res.address + ')'
+            position: res.name + '(' + res.address + ')'
           })
         }
       })
@@ -104,38 +111,40 @@ Page({
       wx.showModal({
         title: '警告!',
         content: '活动标题必需填写',
-        success: function (res) {
-
-        }
+      })
+    } else if (that.data.limitNumber && !/^[1-9]\d*$/.test(that.data.limitNumber)){
+      wx.showModal({
+        title: '警告!',
+        content: '人数限制必须是正整数',
       })
     } else {
       wx.showLoading({
         title: '创建中...',
       })
-      wx.request({
-        url: app.globalData.host + '/activity/create',
-        header: {
-          'content-type': 'application/x-www-form-urlencoded', // 默认值
-          'token': app.globalData.token
-        },
-        method: "POST",
+      app.Util.ajax({
+        url: '/activity/create',
         data: {
-          title: that.data.title, //接龙标题
+          title: that.data.title, //活动标题
           activityDay: that.data.activityDay, //活动日期
           activityHour: that.data.activityHour, //活动时间
-          address: that.data.address,
+          position: that.data.position,
           nickName: that.data.nickName,
           phone: that.data.phone,
           remark: that.data.remark,
+          limitNumber: that.data.limitNumber
         },
-        success: function (res) {
+        resolve: function (res) {
           wx.hideLoading();
-          console.log(res.data.activityId);
-          // wx.redirectTo({
-          //   url: '../enroll/enroll?taskid=' + that.data.taskid
-          // })
+          wx.redirectTo({
+            url: '../detail/detail?activityId=' + res.data.activityId
+          })
         }
       });
     }
+  },
+
+  //整数判断
+  isInteger: function (obj) {
+    return(obj | 0) === obj
   }
 })

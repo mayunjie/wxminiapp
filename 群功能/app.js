@@ -47,7 +47,8 @@ App({
             url: '/user/regist',
             data: {
               encryptedData: res.encryptedData,
-              iv: res.iv
+              iv: res.iv,
+              nickName: useInfo.nickName
             },
             resolve: function(res){
               that.globalData.userInfo = useInfo
@@ -114,7 +115,8 @@ App({
   globalData: {
     userInfo: null,
     token: '',
-    host: 'http://47.105.180.224:8080/',
+    // host: 'http://localhost:8080/',
+    host: 'https://mlee.top/',
     opts: '',
     openGId: ''
   }

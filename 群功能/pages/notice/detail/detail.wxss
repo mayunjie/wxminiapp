@@ -24,7 +24,7 @@ page {
 .bg-star view {
   width: 80%;
   height: 6rpx;
-  background: green;
+  background: #2F4F4F;
 }
 
 .title {
@@ -42,7 +42,7 @@ page {
 
 .share-button {
   width:100%;
-  background:green;
+  background:#2F4F4F;
   border-radius:0;
   color:white;
 }

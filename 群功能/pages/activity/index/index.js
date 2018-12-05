@@ -44,9 +44,13 @@ Page({
         wx.hideLoading();
         that.setData({
           createData: res.data.myCreate,
-          groupData: res.data.group,
           joinData: res.data.myJoin
         })
+        if (res.data.group){
+          that.setData({
+            groupData: res.data.group
+          })
+        }
       }
     })
   },

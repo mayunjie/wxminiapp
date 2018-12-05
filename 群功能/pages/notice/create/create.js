@@ -41,26 +41,21 @@ Page({
       wx.showLoading({
         title: '创建中...',
       })
-      wx.request({
+      app.Util.ajax({
         url: app.globalData.host + '/notice/create',
         data: {
           title: that.data.title,
           content: that.data.content,
           nickName: that.data.nickName
         },
-        header: {
-          'content-type': 'application/x-www-form-urlencoded', // 默认值
-          'token': app.globalData.token
-        },
-        method: "POST",
-        success: function (res) {
+        resolve: function (res) {
           wx.hideLoading();
           console.log(res)
           wx.redirectTo({
             url: '../detail/detail?noticeId=' + res.data.noticeId
           })
         }
-      });
+      })
     }
   }
 })

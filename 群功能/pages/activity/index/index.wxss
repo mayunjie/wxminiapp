@@ -13,7 +13,7 @@
 }
 .on{
   color: #333;
-  border-bottom: 4rpx solid #338fff;
+  border-bottom: 4rpx solid #2F4F4F;
   
 }
 

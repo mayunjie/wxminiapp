@@ -62,7 +62,7 @@ Page({
       currentTab: e.target.dataset.current,
     })
   },
-  creat: function () {
+  create: function () {
     var that = this;
     wx.navigateTo({
       url: '../create/create'
