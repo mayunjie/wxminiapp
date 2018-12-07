@@ -32,4 +32,7 @@
   <view class='title'>备注:</view>
   <textarea auto-height placeholder="如：'带白色球衣'" value='{{remark}}' bindblur='bindRemarkInput'/>
   <button class='ok' bindtap='ok'>创建活动</button>
+  <view class="create">
+    <button class='create-button' bindtap='ok'>创建活动</button>
+  </view>
 </view>

@@ -4,10 +4,15 @@ Page({
     noticeId: '',
     baseData: '',
     year: '',
-    date: ''
+    date: '',
+    screenHeight: ''
   },
   onLoad: function (opt) {
-    console.log(opt)
+    var sys = wx.getSystemInfoSync();
+    console.log(sys)
+    this.setData({
+      screenHeight: sys.screenHeight
+    })
     wx.showShareMenu({
       withShareTicket: true
     })

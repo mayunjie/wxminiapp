@@ -6,6 +6,9 @@
     </view>
     <view wx:if='{{activityData.position}}'>
       <text style='color:#666;'>地 址：{{activityData.position}}</text> 
+      <view style="display:flex;justify-content:center;">
+        <map style="width:700rpx" id="map" show-location></map>
+      </view>
     </view>
     <view wx:if='{{activityData.nickName}}'>
       <text style='color:#666;'>发 起：{{activityData.nickName}} </text>   
@@ -16,7 +19,6 @@
     <view wx:if='{{activityData.remark}}'>
       <text style='color:#666;'>备 注：{{activityData.remark}}</text> 
     </view>
-    <button open-type='share' type='primary' size='mini' style='margin-top:20rpx;'>转发活动</button>
   </view>
   <!-- 报名人员start -->
   <view class="card" wx:if='{{enrollList[0].openId}}'>
@@ -46,7 +48,12 @@
       </view>
     </view>
   </view>
-
+<view class="right">
+    <view>
+      <view class="right-share" open-type='share'><image style="width:80%;height:80%" src="../../../image/分享.svg"></image></view>
+      <view class="right-home" bindtap='returnHome'><image style="width:80%;height:80%" src="../../../image/主页.svg"></image></view>
+    </view>
+</view>
   <view class="enroll">
     <button class='enroll-button' style="background-color: {{enrollColor}}"bindtap='enroll' data-type="1" >报名</button>
     <button class='enroll-button' style="background-color: {{leaveColor}}"bindtap='enroll' data-type="2">请假</button>

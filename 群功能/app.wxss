@@ -1,4 +1,5 @@
 /**app.wxss**/
+@import 'style/weui.wxss';
 page{
   background: #f6f6f6;
   font-size: 30rpx;
@@ -10,3 +11,22 @@ image {
     height: 100%;
     vertical-align: middle;
 }
+
+.create-button {
+  width:100%;
+  background:#2F4F4F;
+  border-radius:0;
+  color:white;
+}
+
+.create {
+  position: fixed;
+  bottom: 0rpx;
+  background: #fff; 
+  color: #fff; 
+  width: 100%; 
+  letter-spacing: 2rpx;
+  display:flex; 
+  flex-direction:row;
+}
+

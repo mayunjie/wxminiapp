@@ -6,35 +6,55 @@
     
   </view>
   <view>
-    <view wx:if='{{currentTab==0}}'>
-      <view wx:for="{{joinData}}" data-activityid="{{item.id}}" bindtap='gotoEnroll' class='item'>
-        <view style='font-weight:bold;'>
-          {{item.title}}
+    <view wx:if='{{currentTab==0}}' style="margin:20rpx 10rpx 100rpx 10rpx;">
+      <view wx:for="{{joinData}}" data-activityid="{{item.id}}" bindtap='gotoEnroll' class="weui-panel">
+        <view class="weui-panel__bd">
+          <view class="weui-media-box weui-media-box_text">
+            <view class="weui-media-box__title weui-media-box__title_in-text">{{item.title}}</view>
+            <view class="weui-media-box__desc">{{item.position}}</view>
+            <view class="weui-media-box__info">
+              <view class="weui-media-box__info__meta"></view>
+                <view class="weui-media-box__info__meta">{{item.nickName}}</view>
+                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{item.day}} {{item.hour}}</view>
+              </view>
+          </view>
         </view>
-        <text style='font-size:26rpx;color:#666;'>{{item.day}} {{item.hour}}</text>
       </view>
     </view>
-    <view wx:if='{{currentTab==1}}'>
-      <view wx:for="{{createData}}" data-activityid="{{item.id}}" bindtap='gotoEnroll' class='item'>
-        <view style='font-weight:bold;'>
-          {{item.title}}
+    <view wx:if='{{currentTab==1}}' style="margin:20rpx 10rpx 100rpx 10rpx;">
+      <view wx:for="{{createData}}" data-activityid="{{item.id}}" bindtap='gotoEnroll' class="weui-panel">
+        <view class="weui-panel__bd">
+          <view class="weui-media-box weui-media-box_text">
+            <view class="weui-media-box__title weui-media-box__title_in-text">{{item.title}}</view>
+            <view class="weui-media-box__desc">{{item.position}}</view>
+            <view class="weui-media-box__info">
+              <view class="weui-media-box__info__meta"></view>
+                <view class="weui-media-box__info__meta">{{item.nickName}}</view>
+                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{item.day}} {{item.hour}}</view>
+              </view>
+          </view>
         </view>
-        <text style='font-size:26rpx;color:#666;'>{{item.day}} {{item.hour}}</text>
       </view>
     </view>
   </view>
-  <view wx:if='{{currentTab==2}}'>
+  <view wx:if='{{currentTab==2}}' style="margin:20rpx 10rpx 100rpx 10rpx;">
     <view wx:if='{{groupData==""}}' style='color:gray;padding:40rpx 0;text-align:center;'>从群内打开该小程序才能查看到群活动</view>
-    <view wx:for="{{groupData}}" data-activityid="{{item.id}}" bindtap='gotoEnroll' class='item'>
-      <view style='font-weight:bold;'>
-        {{item.title}}
+    <view wx:for="{{groupData}}" data-activityid="{{item.id}}" bindtap='gotoEnroll' class="weui-panel">
+        <view class="weui-panel__bd">
+          <view class="weui-media-box weui-media-box_text">
+            <view class="weui-media-box__title weui-media-box__title_in-text">{{item.title}}</view>
+            <view class="weui-media-box__desc">{{item.position}}</view>
+            <view class="weui-media-box__info">
+              <view class="weui-media-box__info__meta"></view>
+                <view class="weui-media-box__info__meta">{{item.nickName}}</view>
+                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{item.day}} {{item.hour}}</view>
+              </view>
+          </view>
+        </view>
       </view>
-      <text style='font-size:26rpx;color:#666;'>{{item.day}} {{item.hour}}</text>
-    </view>
   </view>
 
-  <view direction="all" class='creat' bindtap='creat'>
-    创建活动
+  <view class="create">
+    <button class='create-button' bindtap='create'>创建活动</button>
   </view>
-
 </view>

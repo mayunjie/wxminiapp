@@ -6,7 +6,7 @@
 </view>
 <view style='padding:10rpx 40rpx;box-sizing: border-box;background:#fff;'>
   <input placeholder='输入通知标题' placeholder-style='color:#bbb;font-size:40rpx;font-weight:bold;text-align:center;' value='{{title}}' bindinput='bindTitleInput' maxlength='32' focus='true' class='title'></input>
-  <textarea placeholder="输入通知内容" class="textContent"  bindinput='bindContentInput' value='{{content}}'/>
+  <textarea placeholder="输入通知内容" maxlength='65535' style="height:{{screenHeight*1/2}}px" class="textContent"  bindinput='bindContentInput' value='{{content}}'/>
 </view>
 <view class='option'>
   <view>

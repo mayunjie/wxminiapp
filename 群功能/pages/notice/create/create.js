@@ -3,11 +3,14 @@ Page({
   data: {
     title: '',
     content: '',
-    nickName: ''
+    nickName: '',
+    screenHeight: ''
   },
   onLoad: function () {
+    var sys = wx.getSystemInfoSync();
     this.setData({
-      nickName: app.globalData.userInfo.nickName
+      nickName: app.globalData.userInfo.nickName,
+      screenHeight: sys.screenHeight
     })
   },
   bindTitleInput: function (e) {
@@ -42,7 +45,7 @@ Page({
         title: '创建中...',
       })
       app.Util.ajax({
-        url: app.globalData.host + '/notice/create',
+        url: '/notice/create',
         data: {
           title: that.data.title,
           content: that.data.content,

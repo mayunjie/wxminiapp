@@ -1,18 +1,25 @@
-<view style='padding:10rpx 40rpx;box-sizing: border-box;background:#fff;'>
-  <view class='bg-title'>公    告</view>
-  <view class='bg-star'>
-    <view></view>
+<view style='height:100rpx;box-sizing: border-box;background:#2F4F4F;'>
+  <view style="margin-left:40rpx;">
+    <image src="../../../image/form_light.png" style="width:80rpx;height:80rpx;background-color:green;"></image>
   </view>
 </view>
 <view style='padding:10rpx 40rpx;box-sizing: border-box;background:#fff;'>
   <view class='title'>{{baseData.title}}</view>
-  <text class="textContent">{{baseData.content}}</text>
-  <view style="display:flex;justify-content:flex-end; margin-top:40rpx;">
-    <view style="width:200rpx;text-align:center;margin-right:40rpx">
-      <view>{{baseData.nickName}}</view>
-      <view>{{baseData.showTime}}</view>
-    </view>
+  <view class="textContent" style="height:{{screenHeight*1/2}}px" class="textContent">{{baseData.content}}</view>
+</view>
+<view class="option">
+  <view><image src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKtvKwzVrHbIjmdaTicbic8o4XIEHdibJbv3ImRVIpHc3caw9DVAUlfNY9ib9AicjgQ4Ejfy64hByc9vaw/132" class="option-image"></image></view>
+  <view class='option-info'>
+    <view>署名：{{baseData.nickName}}</view>
+    <view>时间：{{baseData.showTime}}</view>
   </view>
+</view>
+
+<view class="right">
+    <view>
+      <view class="right-share"><image style="width:80%;height:80%" src="../../../image/分享.svg"></image></view>
+      <view class="right-home"><image style="width:80%;height:80%" src="../../../image/主页.svg"></image></view>
+    </view>
 </view>
 
 <view class="share">

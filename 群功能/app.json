@@ -9,27 +9,27 @@
   ],
   "window": {
     "navigationBarBackgroundColor": "#2F4F4F",
-    "navigationBarTextStyle": "dark",
-    "navigationBarTitleText": "同学群",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "群组工具",
     "backgroundColor": "#eeeeee",
-    "backgroundTextStyle": "dark",
+    "backgroundTextStyle": "white",
     "enablePullDownRefresh": false
   },
   "tabBar": {
     "list": [
       {
         "pagePath": "pages/notice/index/index",
-        "text": "群公告",
+        "text": "通知",
         "selectedColor": "#338FFF",
-        "iconPath": "image/tab_01.jpg",
-        "selectedIconPath": "image/tab_05.jpg"
+        "iconPath": "image/form_light.png",
+        "selectedIconPath": "image/form_fill_light.png"
       },
       {
         "pagePath": "pages/activity/index/index",
-        "text": "群活动",
+        "text": "活动",
         "selectedColor": "#338FFF",
-        "iconPath": "image/tab_02.jpg",
-        "selectedIconPath": "image/tab_06.jpg"
+        "iconPath": "image/activity.png",
+        "selectedIconPath": "image/activity_fill.png"
       }
     ]
   }

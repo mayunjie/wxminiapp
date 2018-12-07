@@ -123,6 +123,12 @@ Page({
         })
       }
     }
+  },
+  returnHome: function(){
+    console.log("return home")
+    wx.navigateTo({
+      url: '../index/index',
+    })
   }
 })
 

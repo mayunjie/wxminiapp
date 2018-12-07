@@ -116,7 +116,7 @@ App({
     userInfo: null,
     token: '',
     // host: 'http://localhost:8080/',
-    host: 'https://mlee.top/',
+    host: 'https://mlee.top',
     opts: '',
     openGId: ''
   }

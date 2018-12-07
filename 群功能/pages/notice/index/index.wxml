@@ -5,26 +5,40 @@
   </view>
   
   <!-- 群内通知start -->
-  <view wx:if='{{currentTab==0}}' style="margin-bottom:100rpx;">
+  <view wx:if='{{currentTab==0}}' style="margin:20rpx 10rpx 200rpx 10rpx;">
     <view wx:if='{{groupData==""}}' style='color:gray;padding:40rpx 0;text-align:center;'>
       从群内打开该小程序才能查看到群通知
     </view>
-    <view wx:for="{{groupData}}" data-noticeid="{{item.id}}" bindtap='gotoEnroll' class='item'>
-      <view style='font-weight:bold;'>
-        {{item.title}}
+    <view wx:for="{{groupData}}" data-noticeid="{{item.id}}" bindtap='gotoEnroll' class="weui-panel">
+      <view class="weui-panel__bd">
+        <view class="weui-media-box weui-media-box_text">
+          <view class="weui-media-box__title weui-media-box__title_in-text">{{item.title}}</view>
+          <view class="weui-media-box__desc">{{item.content}}</view>
+          <view class="weui-media-box__info">
+            <view class="weui-media-box__info__meta"></view>
+              <view class="weui-media-box__info__meta">{{item.nickName}}</view>
+              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{item.showTime}}</view>
+            </view>
+        </view>
       </view>
-      <text style='font-size:26rpx;color:#666;'>{{item.showTime}}</text>
     </view>
   </view>
   <!-- 群内通知end -->
 
   <!-- 我创建的通知start -->
-    <view wx:if='{{currentTab==1}}' style="margin-bottom:100rpx;">
-      <view wx:for="{{createData}}" data-noticeid="{{item.id}}" bindtap='gotoEnroll' class='item'>
-        <view style='font-weight:bold;'>
-          {{item.title}}
+    <view wx:if='{{currentTab==1}}' style="margin:20rpx 10rpx 200rpx 10rpx;">
+      <view wx:for="{{createData}}" data-noticeid="{{item.id}}" bindtap='gotoEnroll' class="weui-panel">
+        <view class="weui-panel__bd">
+          <view class="weui-media-box weui-media-box_text">
+            <view class="weui-media-box__title weui-media-box__title_in-text">{{item.title}}</view>
+            <view class="weui-media-box__desc">{{item.content}}</view>
+            <view class="weui-media-box__info">
+              <view class="weui-media-box__info__meta"></view>
+                <view class="weui-media-box__info__meta">{{item.nickName}}</view>
+                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{item.showTime}}</view>
+              </view>
+          </view>
         </view>
-        <text style='font-size:26rpx;color:#666;'>{{item.showTime}} </text>
       </view>
     </view>
   <!-- 我创建的通知end-->
