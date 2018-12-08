@@ -1,7 +1,6 @@
-<view style='padding:10rpx 40rpx;box-sizing: border-box;background:#fff;'>
-  <view class='bg-title'>公    告</view>
-  <view class='bg-star'>
-    <view></view>
+<view class="center" style='height:80rpx;box-sizing: border-box;background:#090723'>
+  <view class="center">
+    <text class="iconfont icon-document" style="font-size:33px; color:white"></text>
   </view>
 </view>
 <view style='padding:10rpx 40rpx;box-sizing: border-box;background:#fff;'>

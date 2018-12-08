@@ -42,7 +42,7 @@ page {
 
 .share-button {
   width:100%;
-  background:#2F4F4F;
+  background:#090723;
   border-radius:0;
   color:white;
 }
@@ -80,7 +80,7 @@ page {
 .right{
   position: absolute;
   right: 4%;
-  top: 5%;
+  top: 4%;
   width: 150rpx;
   height: 100rpx;
   background-size: cover;
@@ -92,7 +92,7 @@ page {
 }
 .right-share{
   border-radius:50%;
-  background-color:white;
+  background-color:#64b532;
   width:70rpx; 
   height:70rpx;
   display:flex;
@@ -101,7 +101,7 @@ page {
 }
 .right-home{
   border-radius:50%;
-  background-color:white;
+  background-color:#16c2c2;
   width:70rpx; 
   height:70rpx;
   display:flex;

@@ -69,7 +69,7 @@ page {
 
 .ok-button {
   width:100%;
-  background:#2F4F4F;
+  background:#090723;
   border-radius:0;
   color:white;
 }

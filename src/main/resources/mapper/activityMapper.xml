@@ -14,6 +14,8 @@
 		<result property="remark" column="remark" jdbcType="VARCHAR"></result>
 		<result property="limitNumber" column="limit_number" jdbcType="INTEGER"></result>
 		<result property="status" column="status" jdbcType="TINYINT"></result>
+		<result property="latitude" column="latitude" jdbcType="DECIMAL"></result>
+		<result property="longitude" column="longitude" jdbcType="DECIMAL"></result>
 	</resultMap>
 
 	<resultMap id="user_map" type="com.myj.miniapp.entity.UserInfo">
@@ -42,6 +44,12 @@
 		<if test="limitNumber!=null">
 			, limit_number
 		</if>
+		<if test="latitude!=null">
+			, latitude
+		</if>
+		<if test="longitude!=null">
+			, longitude
+		</if>
 		)
 		values(current_time(), current_time(), #{openId}, #{nickName}, #{title}, #{activityTime},
 		#{position}
@@ -53,6 +61,12 @@
 		</if>
 		<if test="limitNumber!=null">
 			, #{limitNumber}
+		</if>
+		<if test="latitude!=null">
+			, #{latitude}
+		</if>
+		<if test="longitude!=null">
+			, #{longitude}
 		</if>
 		)
 	</insert>

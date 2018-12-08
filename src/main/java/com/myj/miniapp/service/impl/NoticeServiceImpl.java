@@ -30,7 +30,7 @@ public class NoticeServiceImpl implements NoticeService {
     @Override
     public Notice getNotice(Long id){
         Notice notice = noticeMapper.getNoticeById(id);
-        notice.setShowTime(TimeUtils.convertDate(notice.getCreateTime()));
+        notice.setShowTime(TimeUtils.convertDate(notice.getCreateTime(), TimeUtils.UNTIL_DAY));
         return  notice;
     }
 
@@ -58,7 +58,7 @@ public class NoticeServiceImpl implements NoticeService {
 
     private void setShowTime(List<Notice> noticeList){
         for (Notice notice : noticeList){
-            notice.setShowTime(TimeUtils.convertDate(notice.getCreateTime()));
+            notice.setShowTime(TimeUtils.convertDate(notice.getCreateTime(), TimeUtils.UNTIL_DAY));
         }
     }
 }

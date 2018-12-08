@@ -8,5 +8,7 @@ public interface UserServcie {
 
     List<UserInfo> listUserInfo();
 
+    void insertUserInfo(String userInfoStr, String nickName);
+
     void insertUserInfo(String userInfoStr);
 }

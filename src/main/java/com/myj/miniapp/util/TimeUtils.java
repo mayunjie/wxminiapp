@@ -8,13 +8,13 @@ import java.util.Date;
 
 public class TimeUtils {
 
-    public static final String FORMAT = "yyyy-MM-dd hh:mm:ss";
+    public static final String FORMAT = "yyyy-MM-dd HH:mm:ss";
 
-    public static final String HOUR_FORMAT = "yyyy-MM-dd hh:mm";
+    public static final String HOUR_FORMAT = "yyyy-MM-dd HH:mm";
 
     public static final String UNTIL_DAY = "yyyy-MM-dd";
 
-    public static final String UNTIL_HOUR = "hh:mm";
+    public static final String UNTIL_HOUR = "HH:mm";
 
 
     public static String convertDate(Date date){

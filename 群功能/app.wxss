@@ -1,5 +1,6 @@
 /**app.wxss**/
 @import 'style/weui.wxss';
+@import 'style/icon.wxss';
 page{
   background: #f6f6f6;
   font-size: 30rpx;
@@ -14,7 +15,7 @@ image {
 
 .create-button {
   width:100%;
-  background:#2F4F4F;
+  background:#090723;
   border-radius:0;
   color:white;
 }
@@ -30,3 +31,12 @@ image {
   flex-direction:row;
 }
 
+.center{
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+}
+.row-direction{
+  display:flex;
+  flex-direction: row;
+}

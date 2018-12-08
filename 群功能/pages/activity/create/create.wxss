@@ -45,7 +45,7 @@ input{
   background: transparent;
   padding: 0;
   border:none;
-  width:23%;
+  width:15%;
   text-align: center;
   border-left: 2rpx solid #ccc;
   height: 100%;

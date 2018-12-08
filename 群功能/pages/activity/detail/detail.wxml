@@ -5,16 +5,22 @@
       <text style='color:#666;'>时 间：</text> {{activityData.day}} {{activityData.hour}}
     </view>
     <view wx:if='{{activityData.position}}'>
-      <text style='color:#666;'>地 址：{{activityData.position}}</text> 
-      <view style="display:flex;justify-content:center;">
-        <map style="width:700rpx" id="map" show-location></map>
+      <view class="row-direction" style="line-height:30rpx;">
+        <view><text style='color:#666;'>地 址：{{activityData.position}}</text></view>
+        <view style="margin-left:10rpx;" bindtap='openMap' wx:if='{{activityData.latitude}}'><text class="iconfont icon-coordinates_fill" style="font-size:20px"></text></view>
+      </view>
+      <view wx:if='{{activityData.latitude}}' style="display:flex;justify-content:center;" bindtap='openMap'>
+        <map style="width:700rpx" id="map" show-location longitude="{{activityData.longitude}}" latitude="{{activityData.latitude}}"></map>
       </view>
     </view>
-    <view wx:if='{{activityData.nickName}}'>
+    <view wx:if='{{activityData.nickName}}' style="margin-top:10rpx;">
       <text style='color:#666;'>发 起：{{activityData.nickName}} </text>   
     </view>
     <view wx:if='{{activityData.limitNumber}}'>
       <text style='color:#666;'>限 制：{{activityData.limitNumber}}人 </text>   
+    </view>
+    <view wx:if='{{activityData.phone}}'>
+      <text style='color:#666;'>联 系：{{activityData.phone}}</text> 
     </view>
     <view wx:if='{{activityData.remark}}'>
       <text style='color:#666;'>备 注：{{activityData.remark}}</text> 
@@ -50,11 +56,15 @@
   </view>
 <view class="right">
     <view>
-      <view class="right-share" open-type='share'><image style="width:80%;height:80%" src="../../../image/分享.svg"></image></view>
-      <view class="right-home" bindtap='returnHome'><image style="width:80%;height:80%" src="../../../image/主页.svg"></image></view>
+      <button class="right-share" open-type="share"><text class="iconfont icon-share" style="font-size:30px; color:white;"></text></button>
+      <view class="right-home" bindtap='home'><text class="iconfont icon-homepage" style="font-size:30px;color:white"></text></view>
     </view>
 </view>
-  <view class="enroll">
+  
+  <view wx:if='{{activityData.deadLine==true}}' class="enroll">
+    <button class='enroll-button' style="background-color: gray; width:100%">已结束</button>
+  </view>
+  <view wx:if='{{activityData.deadLine==false}}' class="enroll">
     <button class='enroll-button' style="background-color: {{enrollColor}}"bindtap='enroll' data-type="1" >报名</button>
     <button class='enroll-button' style="background-color: {{leaveColor}}"bindtap='enroll' data-type="2">请假</button>
   </view>

@@ -5,7 +5,8 @@ var utils = (function () {
     month: time.getMonth() + 1,
     date: time.getDate(),
     hours: time.getHours(),
-    minutes: time.getMinutes()
+    minutes: time.getMinutes(),
+    
   }
 })()
 var app = getApp()
@@ -18,7 +19,9 @@ Page({
     nickName: '',
     phone: '',
     remark: '',
-    limitNumber: ''
+    limitNumber: '',
+    latitude: '',
+    longitude: ''
   },
   onLoad: function () {
     var that = this;
@@ -85,7 +88,9 @@ Page({
           var latitude = res.latitude
           var longitude = res.longitude
           that.setData({
-            position: res.name + '(' + res.address + ')'
+            position: res.name,
+            latitude: latitude,
+            longitude: longitude
           })
         }
       })
@@ -131,7 +136,9 @@ Page({
           nickName: that.data.nickName,
           phone: that.data.phone,
           remark: that.data.remark,
-          limitNumber: that.data.limitNumber
+          limitNumber: that.data.limitNumber,
+          latitude: that.data.latitude,
+          longitude: that.data.longitude
         },
         resolve: function (res) {
           wx.hideLoading();

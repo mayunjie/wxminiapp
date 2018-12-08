@@ -32,6 +32,7 @@ public class ActivityServiceImpl implements ActivityService {
         Activity activity =  activityMapper.getActivityById(id);
         activity.setDay(getDay(activity.getActivityTime()));
         activity.setHour(getHour(activity.getActivityTime()));
+        activity.setDeadLine(deadline(activity.getActivityTime()));
         return activity;
     }
 
@@ -106,4 +107,10 @@ public class ActivityServiceImpl implements ActivityService {
     private String getHour(Date activityTime){
         return TimeUtils.convertDate(activityTime, TimeUtils.UNTIL_HOUR);
     }
+
+    //判断活动是否过期
+    private boolean deadline(Date date){
+        return date.before(new Date());
+    }
+
 }

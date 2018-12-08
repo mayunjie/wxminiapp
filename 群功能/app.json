@@ -8,7 +8,7 @@
     "pages/activity/detail/detail"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#2F4F4F",
+    "navigationBarBackgroundColor": "#090723",
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "群组工具",
     "backgroundColor": "#eeeeee",

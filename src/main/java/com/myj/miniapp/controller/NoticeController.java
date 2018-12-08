@@ -81,25 +81,19 @@ public class NoticeController extends BaseController {
         return result;
     }
 
-
-    @RequestMapping("/my/list")
-    public JSONObject getMyCreateList(HttpServletRequest request){
+    @RequestMapping("/list")
+    public JSONObject getList(HttpServletRequest request){
         JSONObject result = new JSONObject();
         String openId =getOpenId(request);
-        List<Notice> noticeList = noticeService.getMyCreateNotice(openId);
+        List<Notice> myCreateList = noticeService.getMyCreateNotice(openId);
+        result.put("myCreateList", myCreateList);
+        String openGId = request.getParameter("openGId");
+        if(StringUtils.isNotBlank(openGId)){
+            List<Notice> groupList = noticeService.getGroupNotice(openGId);
+            result.put("groupList", groupList);
+        }
         result.put("code", "200");
         result.put("msg", "success");
-        result.put("noticeList", noticeList);
-        return result;
-    }
-
-    @RequestMapping("/group/list")
-    public JSONObject getGroupList(String openGId){
-        JSONObject result = new JSONObject();
-        List<Notice> noticeList = noticeService.getGroupNotice(openGId);
-        result.put("code", "200");
-        result.put("msg", "success");
-        result.put("noticeList", noticeList);
         return result;
     }
 

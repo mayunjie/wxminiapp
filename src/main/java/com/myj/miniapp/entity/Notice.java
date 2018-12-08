@@ -24,4 +24,6 @@ public class Notice {
     private Date updateTime;
 
     private String showTime;
+
+    private String avatar;
 }

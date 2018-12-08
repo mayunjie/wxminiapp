@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -34,6 +35,9 @@ public class ActivityController extends BaseController {
         String phone = request.getParameter("phone");
         String remark = request.getParameter("remark");
         String limitNumber = request.getParameter("limitNumber");
+        String latitude = request.getParameter("latitude");
+        String longitude = request.getParameter("longitude");
+
 
         Activity activity = new Activity();
         activity.setOpenId(openId);
@@ -45,6 +49,10 @@ public class ActivityController extends BaseController {
         activity.setRemark(remark);
         if(StringUtils.isNumeric(limitNumber)){
             activity.setLimitNumber(Integer.parseInt(limitNumber));
+        }
+        if(StringUtils.isNotBlank(latitude) && StringUtils.isNotBlank(longitude)){
+            activity.setLatitude(new BigDecimal(latitude));
+            activity.setLongitude(new BigDecimal(longitude));
         }
         Long activityId = activityService.createActivity(activity);
         result.put("code", "200");
@@ -80,15 +88,14 @@ public class ActivityController extends BaseController {
         String openId = getOpenId(request);
         String openGId = request.getParameter("openGId");
         List<Activity> myCreate = activityService.getMyCreateAcitity(openId);
-        List<Activity> group = null;
         if(StringUtils.isNotBlank(openGId)){
-            group = activityService.getGroupActivity(openGId);
+            List<Activity> group = activityService.getGroupActivity(openGId);
+            result.put("group", group);
         }
         List<Activity> myJoin = activityService.getMyJoinActivity(openId);
         result.put("code", "200");
         result.put("msg", "success");
         result.put("myCreate", myCreate);
-        result.put("group", group);
         result.put("myJoin", myJoin);
         return result;
     }

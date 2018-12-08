@@ -66,5 +66,10 @@ Page({
         })
       }
     }
+  },
+  home: function(){
+    wx.switchTab({
+      url: '../index/index',
+    })
   }
 })

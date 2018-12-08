@@ -10,13 +10,14 @@ Page({
     enrollNumber: '',
     leaveNumber: '',
     enrollColor: 'green',
-    leaveColor: 'red'
+    leaveColor: 'red',
   },
   onLoad: function (opt) {
+    var that = this;
     wx.showShareMenu({
       withShareTicket: true
     })
-    var that = this;
+    
     that.setData({
       activityId: opt.activityId,
     })
@@ -124,10 +125,16 @@ Page({
       }
     }
   },
-  returnHome: function(){
-    console.log("return home")
-    wx.navigateTo({
+  home: function(){
+    wx.switchTab({
       url: '../index/index',
+    })
+  },
+  openMap: function(){
+    var that = this;
+    wx.openLocation({
+      latitude: that.data.activityData.latitude,
+      longitude: that.data.activityData.longitude,
     })
   }
 })

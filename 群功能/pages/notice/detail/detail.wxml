@@ -1,6 +1,6 @@
-<view style='height:100rpx;box-sizing: border-box;background:#2F4F4F;'>
-  <view style="margin-left:40rpx;">
-    <image src="../../../image/form_light.png" style="width:80rpx;height:80rpx;background-color:green;"></image>
+<view class="center" style='height:80rpx;box-sizing: border-box;background:#090723'>
+  <view class="center">
+    <text class="iconfont icon-document" style="font-size:33px; color:white"></text>
   </view>
 </view>
 <view style='padding:10rpx 40rpx;box-sizing: border-box;background:#fff;'>
@@ -8,7 +8,7 @@
   <view class="textContent" style="height:{{screenHeight*1/2}}px" class="textContent">{{baseData.content}}</view>
 </view>
 <view class="option">
-  <view><image src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKtvKwzVrHbIjmdaTicbic8o4XIEHdibJbv3ImRVIpHc3caw9DVAUlfNY9ib9AicjgQ4Ejfy64hByc9vaw/132" class="option-image"></image></view>
+  <view><image src="{{baseData.avatar}}" class="option-image"></image></view>
   <view class='option-info'>
     <view>署名：{{baseData.nickName}}</view>
     <view>时间：{{baseData.showTime}}</view>
@@ -17,8 +17,8 @@
 
 <view class="right">
     <view>
-      <view class="right-share"><image style="width:80%;height:80%" src="../../../image/分享.svg"></image></view>
-      <view class="right-home"><image style="width:80%;height:80%" src="../../../image/主页.svg"></image></view>
+      <button class="right-share" open-type="share"><text class="iconfont icon-share" style="font-size:30px; color:white;"></text></button>
+      <view class="right-home" bindtap='home'><text class="iconfont icon-homepage" style="font-size:30px;color:white"></text></view>
     </view>
 </view>
 
