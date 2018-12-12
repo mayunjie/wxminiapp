@@ -29,7 +29,12 @@
     <view>联系方式:<input value='{{phone}}' bindinput='bindPhoneInput' type='number'></input></view>
    </view>
   <view class='title'>备注:</view>
-  <textarea auto-height placeholder="备注说明" value='{{remark}}' style="margin-bottom:100rpx" bindblur='bindRemarkInput'/>
+  <textarea auto-height placeholder="备注说明" value='{{remark}}'  bindblur='bindRemarkInput'/>
+  <view style="height:200rpx; margin-top:20rpx">
+      <view class="weui-footer">
+            <view class="weui-footer__text">Copyright © 2018 mlee</view>
+        </view>
+    </view>
   <view class="create">
     <button class='create-button' bindtap='ok'>创建活动</button>
   </view>

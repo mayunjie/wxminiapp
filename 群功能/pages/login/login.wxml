@@ -1,2 +1,2 @@
 <!--pages/login/login.wxml-->
-登录中。。。
+<view style="margin-top:50%"><button wx:if="{{!userAuth}}" open-type="getUserInfo" type="primary" bindgetuserinfo="getUserInfo">授权登录</button></view>

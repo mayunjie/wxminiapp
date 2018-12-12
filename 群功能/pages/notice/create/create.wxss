@@ -51,7 +51,6 @@ page {
   box-sizing: border-box;
   background: #fff;
   margin-top: 20rpx;
-  margin-bottom: 100rpx;
 }
 
 .option view {

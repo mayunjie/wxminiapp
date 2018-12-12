@@ -73,5 +73,28 @@ Page({
     wx.navigateTo({
       url: '../detail/detail?noticeId=' + e.currentTarget.dataset.noticeid
     })
+  },
+  onPullDownRefresh() {
+    var that = this
+    app.Util.ajax({
+      url: '/notice/list',
+      data: {
+        openGId: app.globalData.openGId
+      },
+      resolve:function(res){
+        if (res.data.groupList){
+          that.setData({
+            groupData: res.data.groupList
+          })
+        }
+        if (res.data.myCreateList){
+          that.setData({
+            createData: res.data.myCreateList
+          })
+        }
+        wx.stopPullDownRefresh() //停止下拉刷新
+      }
+      
+    })
   }
 })

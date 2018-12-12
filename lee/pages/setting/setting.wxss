@@ -1,4 +1,0 @@
-/* pages/setting/setting.wxss */
-.button{
-  margin: 20px 5px 5px 5px;
-}

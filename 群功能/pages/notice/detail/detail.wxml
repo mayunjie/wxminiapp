@@ -5,7 +5,7 @@
 </view>
 <view style='padding:10rpx 40rpx;box-sizing: border-box;background:#fff;'>
   <view class='title'>{{baseData.title}}</view>
-  <view class="textContent" style="height:{{screenHeight*1/2}}px" class="textContent">{{baseData.content}}</view>
+  <scroll-view scroll-y="true" class="textContent" style="height:{{screenHeight*1/2}}px" class="textContent">{{baseData.content}}</scroll-view>
 </view>
 <view class="option">
   <view><image src="{{baseData.avatar}}" class="option-image"></image></view>
@@ -21,7 +21,11 @@
       <view class="right-home" bindtap='home'><text class="iconfont icon-homepage" style="font-size:30px;color:white"></text></view>
     </view>
 </view>
-
+<view style="height:200rpx; margin-top:20rpx">
+      <view class="weui-footer">
+            <view class="weui-footer__text">Copyright © 2018 mlee</view>
+        </view>
+    </view>
 <view class="share">
   <button class='share-button' open-type='share'>分享</button>
 </view>

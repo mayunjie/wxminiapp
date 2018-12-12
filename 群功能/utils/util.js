@@ -53,7 +53,9 @@ const ajax = (config) => {
           content: '登录超时',
           success(res) {
             if (res.confirm) {
-              app.login();
+              wx.reLaunch({
+                url: 'pages/login/login',
+              })
             }
           }
         })

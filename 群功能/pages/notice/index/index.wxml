@@ -5,7 +5,7 @@
   </view>
   
   <!-- 群内通知start -->
-  <view wx:if='{{currentTab==1}}' style="margin:20rpx 10rpx 200rpx 10rpx;">
+  <view wx:if='{{currentTab==1}}' style="margin:20rpx 10rpx 10rpx;">
     <view wx:if='{{groupData==""}}' style='color:gray;padding:40rpx 0;text-align:center;'>
       从群内打开该小程序才能查看到群通知
     </view>
@@ -26,7 +26,7 @@
   <!-- 群内通知end -->
 
   <!-- 我创建的通知start -->
-    <view wx:if='{{currentTab==0}}' style="margin:20rpx 10rpx 200rpx 10rpx;">
+    <view wx:if='{{currentTab==0}}' style="margin:20rpx 10rpx 10rpx;">
       <view wx:for="{{createData}}" data-noticeid="{{item.id}}" bindtap='gotoEnroll' class="weui-panel">
         <view class="weui-panel__bd">
           <view class="weui-media-box weui-media-box_text">
@@ -41,6 +41,12 @@
         </view>
       </view>
     </view>
+    <view style="height:200rpx">
+      <view class="weui-footer">
+            <view class="weui-footer__text">Copyright © 2018 mlee.top</view>
+        </view>
+    </view>
+    
   <!-- 我创建的通知end-->
   <view class="create">
     <button class='create-button' bindtap='create'>创建通知</button>

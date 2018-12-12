@@ -6,7 +6,7 @@
     
   </view>
   <view>
-    <view wx:if='{{currentTab==0}}' style="margin:20rpx 10rpx 100rpx 10rpx;">
+    <view wx:if='{{currentTab==0}}' style="margin:20rpx 10rpx 10rpx;">
       <view wx:for="{{joinData}}" data-activityid="{{item.id}}" bindtap='gotoEnroll' class="weui-panel">
         <view class="weui-panel__bd">
           <view class="weui-media-box weui-media-box_text">
@@ -21,7 +21,7 @@
         </view>
       </view>
     </view>
-    <view wx:if='{{currentTab==1}}' style="margin:20rpx 10rpx 100rpx 10rpx;">
+    <view wx:if='{{currentTab==1}}' style="margin:20rpx 10rpx 10rpx;">
       <view wx:for="{{createData}}" data-activityid="{{item.id}}" bindtap='gotoEnroll' class="weui-panel">
         <view class="weui-panel__bd">
           <view class="weui-media-box weui-media-box_text">
@@ -37,7 +37,7 @@
       </view>
     </view>
   </view>
-  <view wx:if='{{currentTab==2}}' style="margin:20rpx 10rpx 100rpx 10rpx;">
+  <view wx:if='{{currentTab==2}}' style="margin:20rpx 10rpx 10rpx;">
     <view wx:if='{{groupData==""}}' style='color:gray;padding:40rpx 0;text-align:center;'>从群内打开该小程序才能查看到群活动</view>
     <view wx:for="{{groupData}}" data-activityid="{{item.id}}" bindtap='gotoEnroll' class="weui-panel">
         <view class="weui-panel__bd">
@@ -53,7 +53,11 @@
         </view>
       </view>
   </view>
-
+  <view style="height:200rpx">
+      <view class="weui-footer">
+            <view class="weui-footer__text">Copyright © 2018 mlee.top</view>
+        </view>
+    </view>
   <view class="create">
     <button class='create-button' bindtap='create'>创建活动</button>
   </view>

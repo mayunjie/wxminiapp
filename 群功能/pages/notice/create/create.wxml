@@ -13,7 +13,11 @@
     <input value='{{nickName}}' bindinput='bindNameInput'></input>
   </view>
 </view>
-
+<view style="height:200rpx; margin-top:20rpx">
+      <view class="weui-footer">
+            <view class="weui-footer__text">Copyright © 2018 mlee</view>
+        </view>
+    </view>
 <view class="ok">
   <button class='ok-button' bindtap='ok'>完 成</button>
 </view>
