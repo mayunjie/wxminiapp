@@ -49,7 +49,10 @@ public class UserController extends BaseController {
             if(StringUtils.isNotBlank(decrypt)){
                 logger.info("regist user, decrypt string: {}", decrypt);
                 //新增用户信息,由于nickName中存在emoji表情，所以需要明文传输
+                long startTime = System.currentTimeMillis();
                 userServcie.insertUserInfo(decrypt, nickName);
+                long endTime = System.currentTimeMillis();
+                logger.info("regist user, cost {}ms", endTime - startTime);
                 result.put("code", "200");
                 result.put("msg", "success");
             }else{

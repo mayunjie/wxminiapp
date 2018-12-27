@@ -11,22 +11,22 @@ Page({
     var sys = wx.getSystemInfoSync();
     console.log(sys)
     this.setData({
-      screenHeight: sys.screenHeight
+      screenHeight: sys.screenHeight,
+      noticeId: opt.noticeId
     })
     wx.showShareMenu({
       withShareTicket: true
     })
-    wx.request({  //请求群通知任务的详情数据
-      url: app.globalData.host + '/notice/info',
-      data: { noticeId: opt.noticeId },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded', // 默认值
-        'token': app.globalData.token
-      },
-      method: "POST",
-      success: (res) => {
-        this.setData({
-          noticeId: opt.noticeId,
+    app.Util.callbackData(this.getData);
+  },
+
+  getData: function(){
+    var that = this;
+    app.Util.ajax({
+      url: '/notice/info',
+      data: { noticeId: that.data.noticeId },
+      resolve: (res) => {
+        that.setData({
           baseData: res.data.notice,
           year: res.data.notice.createTime.substring(0, 4)
         })
@@ -46,22 +46,17 @@ Page({
           shareTicket: shareTickets[0],
           success: function (res) {
             //关联群组与公告
-            wx.request({
-              url: app.globalData.host + '/notice/relate/group',
+            app.Util.ajax({
+              url: '/notice/relate/group',
               data: {
                 noticeId: that.data.noticeId,
                 encryptedData: res.encryptedData,
                 iv: res.iv
               },
-              header: {
-                'content-type': 'application/x-www-form-urlencoded', // 默认值
-                'token': app.globalData.token
-              },
-              method: "POST",
-              success: function (res) {
+              resolve: function (res) {
                 console.log(res.data.msg);
               }
-            });
+            })
           }
         })
       }

@@ -7,6 +7,8 @@ import com.myj.miniapp.exception.BaseException;
 import com.myj.miniapp.service.ActivityService;
 import com.myj.miniapp.util.TimeUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +21,8 @@ import java.util.List;
 @RestController
 @RequestMapping("activity")
 public class ActivityController extends BaseController {
+
+    private Logger logger = LoggerFactory.getLogger(ActivityController.class);
 
     @Autowired
     private ActivityService activityService;
@@ -64,6 +68,7 @@ public class ActivityController extends BaseController {
 
     @RequestMapping("/info")
     public JSONObject getActivity(HttpServletRequest request){
+        long startTime = System.currentTimeMillis();
         JSONObject result = new JSONObject();
         String openId = getOpenId(request);
         Long activityId = Long.parseLong(request.getParameter("activityId"));
@@ -79,6 +84,8 @@ public class ActivityController extends BaseController {
         result.put("enrollType", enrollType);
         result.put("enrollList", enrollList);
         result.put("leaveList", leaveList);
+        long endTime = System.currentTimeMillis();
+        logger.info("get activity info, cost {}ms", endTime - startTime);
         return result;
     }
 
@@ -87,12 +94,15 @@ public class ActivityController extends BaseController {
         JSONObject result = new JSONObject();
         String openId = getOpenId(request);
         String openGId = request.getParameter("openGId");
+        long startTime = System.currentTimeMillis();
         List<Activity> myCreate = activityService.getMyCreateAcitity(openId);
         if(StringUtils.isNotBlank(openGId)){
             List<Activity> group = activityService.getGroupActivity(openGId);
             result.put("group", group);
         }
         List<Activity> myJoin = activityService.getMyJoinActivity(openId);
+        long endTime = System.currentTimeMillis();
+        logger.info("get activity list, cost {}ms", endTime - startTime);
         result.put("code", "200");
         result.put("msg", "success");
         result.put("myCreate", myCreate);

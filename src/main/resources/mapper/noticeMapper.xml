@@ -12,7 +12,7 @@
 	</resultMap>
 	<select id="listNoticeByGroup" resultMap="notice_map" parameterType="java.lang.String">
 		select n.* from group_notice_relation r left join notice n on r.notice_id = n.id
-		where r.open_group_id = #{openGId} and r.status = 1 and n.status = 1
+		where r.open_group_id = #{openGId} and r.status = 1 and n.status = 1 order by n.id desc
 	</select>
 
 	<insert id="insertNotice" parameterType="com.myj.miniapp.entity.Notice" useGeneratedKeys="true" keyProperty="id">
@@ -30,7 +30,7 @@
 	</insert>
 
 	<select id="listMyCreateNotice" resultMap="notice_map" parameterType="java.lang.String">
-		select * from notice where open_id = #{openId} and status = 1
+		select * from notice where open_id = #{openId} and status = 1 order by id desc
 	</select>
 
 </mapper>

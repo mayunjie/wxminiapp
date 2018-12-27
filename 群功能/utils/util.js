@@ -48,17 +48,7 @@ const ajax = (config) => {
       }
       //session异常
       else if (res.data.code == '501') {
-        wx.showModal({
-          title: '提示',
-          content: '登录超时',
-          success(res) {
-            if (res.confirm) {
-              wx.reLaunch({
-                url: 'pages/login/login',
-              })
-            }
-          }
-        })
+        app.login();
       } else {
         //失败处理
         if (reject != undefined) {
@@ -88,7 +78,30 @@ const ajax = (config) => {
     }
   })
 }
+
+const callbackData = (getData) =>{
+  var app = getApp();
+  //群组进入
+  if (app.globalData.opts.scene == "1044") {
+    if (app.globalData.openGId) {
+      getData();
+    } else {
+      app.paramReadyCallBack = () => {
+        getData()
+      }
+    }
+  } else {
+    if (app.globalData.userInfo) {
+      getData();
+    } else {
+      app.paramReadyCallBack = () => {
+        getData()
+      }
+    }
+  }
+}
 module.exports = {
   formatTime: formatTime,
-  ajax, ajax
+  ajax: ajax,
+  callbackData: callbackData
 }

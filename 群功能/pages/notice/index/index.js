@@ -11,23 +11,7 @@ Page({
   onShow: function(){
     var that = this;
     //群组进入
-    if (app.globalData.opts.scene == "1044"){
-      if(app.globalData.openGId){
-        that.getData();
-      }else{
-        app.paramReadyCallBack = () =>{
-          that.getData()
-        }
-      }
-    }else{
-      if (app.globalData.userInfo) {
-        that.getData();
-      } else {
-        app.paramReadyCallBack = () => {
-          that.getData()
-        }
-      }
-    }
+    app.Util.callbackData(that.getData);
   },
 
   getData : function(){

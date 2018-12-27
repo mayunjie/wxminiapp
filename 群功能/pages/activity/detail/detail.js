@@ -24,9 +24,11 @@ Page({
     wx.showLoading({
       title: '加载中...',
     })
-    this.getActivityInfo();
+    
   },
-
+  onShow: function(){
+    app.Util.callbackData(this.getActivityInfo)
+  },
   getActivityInfo: function(){
     var that = this;
     //加载活动信息

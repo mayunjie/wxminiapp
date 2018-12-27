@@ -36,13 +36,25 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": 0,
-					"name": "群编译",
-					"pathName": "pages/login/login",
-					"query": "",
+					"name": "活动群编译",
+					"pathName": "pages/activity/detail/detail",
+					"query": "activityId=11",
+					"scene": "1044",
+					"shareInfo": {
+						"groupName": "测试模拟群1",
+						"shareName": "PC3l1Par0WnkqvtHPWS8AzZ3S6cEdaM9j3XAk2eTQsc@cr4dev",
+						"shareKey": "OJ4NegTw3nJMxBZzg7qJTdtky_AxUo1WYGh61Q2lLa3a8LB00lW4cUPHZAetfJY9b91H-HE48gD1Np1e6RBmGQ~~"
+					}
+				},
+				{
+					"id": -1,
+					"name": "公告群编译",
+					"pathName": "pages/notice/detail/detail",
+					"query": "noticeId=6",
 					"scene": "1044",
 					"shareInfo": {
 						"groupName": "测试模拟群1",

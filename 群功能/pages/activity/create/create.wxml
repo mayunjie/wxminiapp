@@ -8,7 +8,7 @@
         日 期:   {{activityDay}}
       </view>
     </picker>
-    <picker mode="time" value="{{activityHour}}" start="{{activityHour}}" bindchange="bindHourChange">
+    <picker mode="time" value="{{activityHour}}" bindchange="bindHourChange">
       <view class="picker">
         时 间:   {{activityHour}}
       </view>

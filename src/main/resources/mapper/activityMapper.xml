@@ -72,17 +72,17 @@
 	</insert>
 
 	<select id="getMyCreateActivity" resultMap="activity_map" parameterType="java.lang.String">
-		select * from activity where open_id = #{openId} and status = 1
+		select * from activity where open_id = #{openId} and status = 1 order by id desc;
 	</select>
 
 	<select id="getGroupActivity" resultMap="activity_map" parameterType="java.lang.String">
 		select a.* from group_activity_relation r, activity a where r.activity_id = a.id
-		and r.open_group_id = #{openGId}
+		and r.open_group_id = #{openGId} order by a.id desc;
 	</select>
 
 	<select id="getMyJoinActivity" resultMap="activity_map" parameterType="java.lang.String">
 		select a.* from activity_enroll e, activity a
-		where e.activity_id = a.id and e.open_id = #{openId}
+		where e.activity_id = a.id and e.open_id = #{openId} order by a.id desc
 	</select>
 
 	<select id="getActivityById" resultMap="activity_map" parameterType="java.lang.Long">

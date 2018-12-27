@@ -33,7 +33,10 @@ public class LoginController {
     public JSONObject wxLogin(String code, String encryptedData, String iv){
         JSONObject result = new JSONObject();
         //通过code去微信服务器请求openid和sessionkey
+        Long starTtime = System.currentTimeMillis();
         Map<String, Object> wxSession = wxManageService.getWxSession(code);
+        Long wxTime = System.currentTimeMillis();
+        logger.info("get wx session，cost {}ms",  wxTime- starTtime);
         if(wxSession == null){
             result.put("code", "500");
             result.put("msg", "get weixin session error");
@@ -55,7 +58,8 @@ public class LoginController {
         result.put("code", "200");
         result.put("msg", "success");
         result.put("token", token);
-        logger.info("create session success, token:{}", token);
+        Long endTime = System.currentTimeMillis();
+        logger.info("create session success, token:{}, cost {}ms", token, endTime - starTtime);
         return result;
     }
 }
