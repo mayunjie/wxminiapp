@@ -80,5 +80,36 @@ Page({
       }
       
     })
+  },
+  deleteNotice: function(e){
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确定删除？',
+      success(res) {
+        if (res.confirm) {
+          var noticeId = e.currentTarget.dataset.noticeid;
+          app.Util.ajax({
+            url: '/notice/delete',
+            data: {
+              noticeId: noticeId
+            },
+            resolve: function (res) {
+              if (res.data.groupList) {
+                that.setData({
+                  groupData: res.data.groupList
+                })
+              }
+              if (res.data.myCreateList) {
+                console.log("set data")
+                that.setData({
+                  createData: res.data.myCreateList
+                })
+              }
+            }
+          })
+        }
+      }
+    })
   }
 })

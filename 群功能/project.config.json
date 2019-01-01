@@ -4,14 +4,14 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.4",
+	"libVersion": "2.4.3",
 	"appid": "wx0a8971d3bba5db6c",
 	"projectname": "%E7%BE%A4%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95%E7%89%88",
 	"debugOptions": {
@@ -36,13 +36,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "活动群编译",
 					"pathName": "pages/activity/detail/detail",
-					"query": "activityId=11",
+					"query": "activityId=6&share=true",
 					"scene": "1044",
 					"shareInfo": {
 						"groupName": "测试模拟群1",
@@ -51,10 +51,10 @@
 					}
 				},
 				{
-					"id": -1,
+					"id": 1,
 					"name": "公告群编译",
 					"pathName": "pages/notice/detail/detail",
-					"query": "noticeId=6",
+					"query": "noticeId=11&share=true",
 					"scene": "1044",
 					"shareInfo": {
 						"groupName": "测试模拟群1",

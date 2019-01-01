@@ -8,10 +8,19 @@ Page({
   },
   onLoad: function () {
     var sys = wx.getSystemInfoSync();
-    this.setData({
-      nickName: app.globalData.userInfo.nickName,
-      screenHeight: sys.screenHeight
-    })
+    //没有授权，先引导用户授权
+    if(!app.globalData.userInfo){
+      wx.redirectTo({
+        url: '/pages/login/login?url=' + '/pages/notice/create/create',
+      })
+    }else{
+      console.log("create")
+      this.setData({
+        nickName: app.globalData.userInfo.nickName,
+        screenHeight: sys.screenHeight
+      })
+    }
+    
   },
   bindTitleInput: function (e) {
     this.setData({

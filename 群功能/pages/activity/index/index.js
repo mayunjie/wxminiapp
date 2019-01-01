@@ -30,6 +30,7 @@ Page({
           createData: res.data.myCreate,
           joinData: res.data.myJoin
         })
+        console.log(res.data.group)
         if (res.data.group){
           that.setData({
             groupData: res.data.group
@@ -55,6 +56,35 @@ Page({
     var that = this;
     wx.navigateTo({
       url: '../detail/detail?activityId=' + e.currentTarget.dataset.activityid
+    })
+  },
+  deleteActivity: function(e){
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确定删除？',
+      success(res) {
+        if (res.confirm) {
+          var activityId = e.currentTarget.dataset.activityid;
+          app.Util.ajax({
+            url: '/activity/delete',
+            data: {
+              activityId: activityId
+            },
+            resolve: function (res) {
+              that.setData({
+                createData: res.data.myCreate,
+                joinData: res.data.myJoin
+              })
+              if (res.data.group) {
+                that.setData({
+                  groupData: res.data.group
+                })
+              }
+            }
+          })
+        }
+      }
     })
   }
 })

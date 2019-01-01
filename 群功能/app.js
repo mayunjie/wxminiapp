@@ -27,6 +27,14 @@ App({
           resolve: function (res) {
             //记录token
             that.globalData.token = res.data.token;
+            if (that.globalData.opts.scene == 1044) {
+              that.getGroupInfo();
+            }else{
+              if (that.tokenReadyCallBack){
+                that.tokenReadyCallBack();
+              }
+              wx.hideLoading();
+            }
             that.authUser();
           }
         })
@@ -40,41 +48,32 @@ App({
     // 获取用户信息
     wx.getSetting({
       success: res => {
+        console.log("get setting")
         //没有授权则先引导用户授权
-        if (!res.authSetting['scope.userInfo']) {
-          wx.navigateTo({
-            url: '/pages/login/login',
-          })
-        } else {
+        if (res.authSetting['scope.userInfo']) {
+          console.log("auth user")
           that.getUserInfo();
         }
       }
     })
   },
 
-  getUserInfo: function () {
+  getUserInfo: function (userCallback) {
     var that = this;
     wx.getUserInfo({
       success: res => {
-        that.setUserInfo(res)
+        that.setUserInfo(res, userCallback)
       }
     })
   },
 
-  setUserInfo(res) {
+  setUserInfo(res, userCallback) {
     var that = this;
     // 可以将 res 发送给后台解码出 unionId
     var useInfo = res.userInfo
     that.globalData.userInfo = useInfo
-    //判断如果从群组进入，则
-    if (that.globalData.opts.scene == 1044) {
-      that.getGroupInfo();
-    } else {
-      //页面函数回调
-      if (that.paramReadyCallBack){
-        that.paramReadyCallBack();
-      }
-      wx.hideLoading();
+    if (userCallback){
+      userCallback();
     }
     that.Util.ajax({
       url: '/user/regist',
@@ -102,8 +101,8 @@ App({
           },
           resolve: function (res) {
             that.globalData.openGId = res.data.openGId
-            if (that.paramReadyCallBack) {
-              that.paramReadyCallBack();
+            if (that.gIdReadyCallBack) {
+              that.gIdReadyCallBack();
             }
             wx.hideLoading();
           }

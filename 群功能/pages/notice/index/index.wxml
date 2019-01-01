@@ -27,8 +27,8 @@
 
   <!-- 我创建的通知start -->
     <view wx:if='{{currentTab==0}}' style="margin:20rpx 10rpx 10rpx;">
-      <view wx:for="{{createData}}" data-noticeid="{{item.id}}" bindtap='gotoEnroll' class="weui-panel">
-        <view class="weui-panel__bd">
+      <view wx:for="{{createData}}" data-noticeid="{{item.id}}" class="weui-panel">
+        <view class="weui-panel__bd" bindtap='gotoEnroll' data-noticeid="{{item.id}}">
           <view class="weui-media-box weui-media-box_text">
             <view class="weui-media-box__title weui-media-box__title_in-text">{{item.title}}</view>
             <view class="weui-media-box__desc">{{item.content}}</view>
@@ -38,6 +38,9 @@
                 <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{item.showTime}}</view>
               </view>
           </view>
+        </view>
+        <view style="position: absolute;right: 4%;top: 4%;" bindtap='deleteNotice' data-noticeid="{{item.id}}">
+          <view><text class="iconfont icon-delete" style="font-size:24px;"></text></view>
         </view>
       </view>
     </view>

@@ -1,2 +1,2 @@
 <!--pages/login/login.wxml-->
-<view style="margin-top:50%"><button wx:if="{{!userAuth}}" open-type="getUserInfo" type="primary" bindgetuserinfo="getUserInfo">授权登录</button></view>
+<view style="margin-top:50%"><button wx:if="{{!userAuth}}" open-type="getUserInfo" type="primary" bindgetuserinfo="getUserInfo">微信一键登录</button></view>

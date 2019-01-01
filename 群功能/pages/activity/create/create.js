@@ -25,11 +25,18 @@ Page({
   },
   onLoad: function () {
     var that = this;
-    that.setData({
-      activityDay: utils.year + '-' + ('0' + utils.month).substr(-2) + '-' + ('0' + utils.date).substr(-2),
-      activityHour: ('0' + utils.hours).substr(-2) + ':' + ('0' + utils.minutes).substr(-2),
-      nickName: app.globalData.userInfo.nickName
-    })
+    //没有授权，先引导用户授权
+    if (!app.globalData.userInfo) {
+      wx.redirectTo({
+        url: '/pages/login/login?url=' + '/pages/activity/create/create',
+      })
+    } else {
+      that.setData({
+        activityDay: utils.year + '-' + ('0' + utils.month).substr(-2) + '-' + ('0' + utils.date).substr(-2),
+        activityHour: ('0' + utils.hours).substr(-2) + ':' + ('0' + utils.minutes).substr(-2),
+        nickName: app.globalData.userInfo.nickName
+      })
+    }
   },
   bindDayChange: function (e) {
     var that = this;

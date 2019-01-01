@@ -1,11 +1,11 @@
 <view class="center" style='height:80rpx;box-sizing: border-box;background:#090723'>
   <view class="center">
-    <textarea class="iconfont icon-document" style="font-size:33px; color:white"></textarea>
+    <text class="iconfont icon-document" style="font-size:33px; color:white"></text>
   </view>
 </view>
 <view style='padding:10rpx 40rpx;box-sizing: border-box;background:#fff;'>
   <view class='title'>{{baseData.title}}</view>
-  <scroll-view scroll-y="true" class="textContent" style="height:{{screenHeight*1/2}}px" class="textContent">{{baseData.content}}</scroll-view>
+  <scroll-view scroll-y="true" class="textContent" style="height:{{screenHeight*1/2}}px" class="textContent"><text>{{baseData.content}}</text></scroll-view>
 </view>
 <view class="option">
   <view><image src="{{baseData.avatar}}" class="option-image"></image></view>
@@ -28,4 +28,8 @@
     </view>
 <view class="share">
   <button class='share-button' open-type='share'>分享</button>
+</view>
+
+<view wx:if="{{baseData.status==0}}" class="shade center">
+  <view style="margin-"><image src="/image/deleted.png" style="width:400rpx;height:200rpx"></image></view>
 </view>

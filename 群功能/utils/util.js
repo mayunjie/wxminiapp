@@ -86,15 +86,15 @@ const callbackData = (getData) =>{
     if (app.globalData.openGId) {
       getData();
     } else {
-      app.paramReadyCallBack = () => {
+      app.gIdReadyCallBack = () => {
         getData()
       }
     }
   } else {
-    if (app.globalData.userInfo) {
+    if (app.globalData.token){
       getData();
-    } else {
-      app.paramReadyCallBack = () => {
+    }else{
+      app.tokenReadyCallBack = () => {
         getData()
       }
     }

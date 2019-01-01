@@ -79,6 +79,7 @@
   width: 150rpx;
   height: 100rpx;
   background-size: cover;
+  z-index:2;
 }
 .right view{
   display:flex; 

@@ -73,3 +73,7 @@
     <button class='enroll-button' style="background-color: {{leaveColor}}"bindtap='enroll' data-type="2">请假</button>
   </view>
 </view>
+
+<view wx:if="{{activityData.status==0}}" class="shade center">
+  <view><image src="/image/deleted.png" style="width:400rpx;height:200rpx"></image></view>
+</view>

@@ -21,6 +21,13 @@ Page({
     that.setData({
       activityId: opt.activityId,
     })
+    //从分享进入
+    if (opt.share) {
+      //从群分享进入，关联群信息
+      this.setData({
+        share: opt.share
+      })
+    }
     wx.showLoading({
       title: '加载中...',
     })
@@ -31,6 +38,11 @@ Page({
   },
   getActivityInfo: function(){
     var that = this;
+    //先关联群组信息
+    if (that.data.share && app.globalData.openGId) {
+      console.log("relate")
+      that.relateGroup()
+    }
     //加载活动信息
     app.Util.ajax({
       url: '/activity/info',
@@ -53,6 +65,13 @@ Page({
   },  
   //报名
   enroll: function (e) {
+    var that = this;
+    if(!app.globalData.userInfo){
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+      return;
+    }
     var type = e.currentTarget.dataset.type;
     if (this.data.enrollType == type){
       console.log("重复动作")
@@ -64,7 +83,6 @@ Page({
       })
       return;
     }
-    var that = this;
     app.Util.ajax({
       url: '/activity/enroll',
       data: {
@@ -87,27 +105,19 @@ Page({
   onShareAppMessage: function (res) {
     var that = this;
     return {
-      path: '/pages/activity/detail/detail?activityId=' + that.data.activityId,
-      success: function (res) {
-        var shareTickets = res.shareTickets;
-        if (!shareTickets) {
-          return false;
-        }
-        wx.getShareInfo({
-          shareTicket: shareTickets[0],
-          success: function (res) {
-            //关联群组与公告
-            app.Util.ajax({
-              url: '/activity/relate/group',
-              data: {
-                activityId: that.data.activityId,
-                encryptedData: res.encryptedData,
-                iv: res.iv
-              }
-            })
-          }
-        })
-      }
+      path: '/pages/activity/detail/detail?activityId=' + that.data.activityId + "&share=true",
+      // success: function (res) {
+      //   var shareTickets = res.shareTickets;
+      //   if (!shareTickets) {
+      //     return false;
+      //   }
+      //   wx.getShareInfo({
+      //     shareTicket: shareTickets[0],
+      //     success: function (res) {
+            
+      //     }
+      //   })
+      // }
     }
   },
 
@@ -137,6 +147,20 @@ Page({
     wx.openLocation({
       latitude: that.data.activityData.latitude,
       longitude: that.data.activityData.longitude,
+    })
+  },
+  relateGroup(){
+    //关联群组与公告
+    var that = this;
+    app.Util.ajax({
+      url: '/activity/relate/group',
+      data: {
+        activityId: that.data.activityId,
+        openGId: app.globalData.openGId
+      },
+      resolve: function(){
+
+      }
     })
   }
 })
